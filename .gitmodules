@@ -1,0 +1,6 @@
+[submodule "kirby"]
+	path = kirby
+	url = https://github.com/getkirby/kirby.git
+[submodule "site/plugins/merx"]
+	path = site/plugins/merx
+	url = git@github.com:wagnerwagner/merx.git
