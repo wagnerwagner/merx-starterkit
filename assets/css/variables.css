@@ -1,0 +1,38 @@
+/* Some variables are “borrowed” from getkirby.com */
+
+:root {
+  --spacing-xs: 0.25rem;
+  --spacing-s: 0.5rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.5rem;
+  --spacing-xl: 3rem;
+
+  --color-black: #000;
+  --color-white: #fff;
+  --color-gray-100: #f7f7f7;
+  --color-gray-200: #efefef;
+  --color-gray-300: #ddd;
+  --color-gray-400: #ccc;
+  --color-gray-500: #999;
+  --color-gray-600: #777;
+  --color-gray-700: #595959;
+  --color-gray-800: #3e3e3e;
+  --color-gray-900: #292929;
+  --color-red: #cc1111;
+
+  --text-xs: 0.75rem;
+  --text-s: 0.875rem;
+  --text-m: 1rem;
+  --text-l: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-xxl: 1.5rem;
+  --text-3xl: 1.75rem;
+  --text-4xl: 2.5rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4rem;
+
+  --line-height: 1.2;
+
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}

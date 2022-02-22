@@ -1,0 +1,19 @@
+Title: Bike
+
+----
+
+Price: 2000
+
+----
+
+Tax: default
+
+----
+
+Blocks: [{"content":{"text":"<p>Aenean lacinia bibendum nulla sed consectetur. Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus.<\/p>"},"id":"e93538a0-61f7-46ec-a21c-f806e7e5f6b2","isHidden":false,"type":"text"}]
+
+----
+
+Thumb:
+
+- robert-bye-tg36rvceqng-unsplash.jpg

@@ -1,0 +1,35 @@
+# This is the blueprint for the orders.
+# With the help of this blueprint an order is validated and stored.
+# https://merx.wagnerwagner.de/docs/getting-started/validate-checkout
+# https://merx.wagnerwagner.de/docs/blueprints/pages#order
+
+title: field.order
+
+# An Order page does need all status.
+status:
+  draft: page.status.error
+  unlisted: page.status.incomplete
+  listed: page.status.complete
+
+# Orders must not be deleted. Make sure you disable these options
+options:
+  changeSlug: false
+  changeTemplate: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+
+# This page blueprint extends the order layout provided by Merx
+# The layout provides the “Overview” and the “Payment” tab.
+# If you don’t need theses tabs or want to have something different,
+# feel free to write your very own order blueprint.
+extends: layouts/order
+
+tabs:
+  personalData:
+    label:
+      en: Personal Data
+      de: Persönliche Daten
+    icon: user
+    sections:
+      personalData: sections/personal-data

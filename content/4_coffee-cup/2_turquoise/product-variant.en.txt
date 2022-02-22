@@ -1,0 +1,20 @@
+Variantname: Turquoise
+
+----
+
+Price: 10
+
+----
+
+Tax: default
+
+----
+
+Stock: 5
+
+----
+
+Thumb:
+
+- >
+  taisiia-shestopal-xo9notfy4mu-unsplash.jpg

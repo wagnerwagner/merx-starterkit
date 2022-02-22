@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-family-sans);
+  line-height: var(--line-height);
+  color: var(--color-black);
+  background: var(--color-gray-100);
+}
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: var(--spacing-m);
+  max-width: 70rem;
+  margin: 0 auto;
+}
+summary,
+strong {
+  font-weight: 600;
+}
+main {
+  margin-top: var(--spacing-xl);
+}
+
+/* RESETS */
+
+li {
+  list-style: none;
+}
+a {
+  color: currentColor;
+}
+button {
+  font: inherit;
+  background: none;
+  border: 0;
+  color: currentColor;
+}
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+/* HELPER CLASSES */
+.color-gray-100 {
+  color: var(--color-gray-100);
+}
+.color-gray-200 {
+  color: var(--color-gray-200);
+}
+.color-gray-300 {
+  color: var(--color-gray-300);
+}
+.color-gray-400 {
+  color: var(--color-gray-400);
+}
+.color-gray-500 {
+  color: var(--color-gray-500);
+}
+.color-gray-600 {
+  color: var(--color-gray-600);
+}
+.color-gray-700 {
+  color: var(--color-gray-700);
+}
+.color-gray-800 {
+  color: var(--color-gray-800);
+}
+.color-gray-900 {
+  color: var(--color-gray-900);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+.text-s {
+  font-size: var(--text-s);
+}
+.text-m {
+  font-size: var(--text-m);
+}
+.text-l {
+  font-size: var(--text-l);
+}
+.text-xl {
+  font-size: var(--text-xl);
+}
+.text-xxl {
+  font-size: var(--text-xxl);
+}
+.text-3xl {
+  font-size: var(--text-3xl);
+}
+.text-4xl {
+  font-size: var(--text-4xl);
+}
+.text-5xl {
+  font-size: var(--text-5xl);
+}
+.text-6xl {
+  font-size: var(--text-6xl);
+}
+
+.stack-s > * + * {
+  margin-top: var(--spacing-s);
+}
+.stack-m > * + * {
+  margin-top: var(--spacing-m);
+}
+
+/* STANDARD COMPONENTS */
+.blocks {
+}
+.text {
+  line-height: 1.4;
+}
+.text > * {
+  margin-block: 0;
+}
+.text > * + * {
+  margin-block-start: var(--spacing-s);
+}
+.table td,
+.table th {
+  text-align: start;
+  padding: var(--spacing-xs);
+}
+
+.button {
+  display: inline-block;
+  padding: var(--spacing-s);
+  font-weight: 500;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+.button[disabled] {
+  color: var(--color-white);
+  background-color: var(--color-gray-600);
+}
+.button-white {
+  display: inline-block;
+  padding: 0.5em;
+  font-weight: 500;
+  color: var(--color-black);
+  background-color: var(--color-white);
+}
+
+.error {
+  color: var(--color-red);
+}
+
+.global-message {
+  display: block;
+  padding: var(--spacing-m);
+  text-align: center;
+  color: var(--color-white);
+  background-color: var(--color-black);
+}

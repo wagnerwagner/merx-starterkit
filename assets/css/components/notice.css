@@ -1,0 +1,4 @@
+.notice {
+  padding: var(--spacing-m);
+  background-color: var(--color-gray-300);
+}

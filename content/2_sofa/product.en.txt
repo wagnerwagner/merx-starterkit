@@ -1,0 +1,24 @@
+Title: Sofa
+
+----
+
+Price: 2800
+
+----
+
+Tax: default
+
+----
+
+Stock: 2
+
+----
+
+Blocks: [{"content":{"text":"<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>"},"id":"e8a8c63f-11c9-4f84-aff9-c42c5d43f679","isHidden":false,"type":"text"}]
+
+----
+
+Thumb:
+
+- >
+  phillip-goldsberry-fzuleefea1q-unsplash.jpg

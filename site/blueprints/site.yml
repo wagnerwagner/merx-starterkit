@@ -1,0 +1,68 @@
+tabs:
+  pages:
+    icon: page
+    label:
+      en: Pages
+      de: Seiten
+    sections:
+      homepage:
+        headline:
+          en: Homepage
+          de: Startseite
+        type: pages
+        template: home
+      pages:
+        headline:
+          en: Pages
+          de: Seiten
+        type: pages
+        template:
+          - default
+          - product
+          - product-variants
+        info: "{{ page.intendedTemplate.name }}"
+      errorPage:
+        headline:
+          en: Error Page
+          de: Fehler-Seite
+        type: pages
+        template: error
+  orders:
+    icon: draft
+    label:
+      en: Orders
+      de: Bestellungen
+    sections:
+      orders:
+        extends: sections/orders
+  shopSettings:
+    label:
+      en: Shop Settings
+      de: Shop Einstellungen
+    icon: settings
+    sections:
+      checkoutPage:
+        headline:
+          en: Checkout Page
+          de: Kassen-Seite
+        type: pages
+        template: checkout
+        max: 1
+      shippingPage:
+        headline:
+          en: Shipping Page
+          de: Versand-Seite
+        type: pages
+        template: shipping
+        max: 1
+      shopSettings:
+        type: fields
+        fields:
+          maxAmount:
+            label:
+              en: Max Amount per Product
+              de: Maximale Anzahl pro Produkt
+            type: number
+            translate: false
+            required: true
+            width: 1/2

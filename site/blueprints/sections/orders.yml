@@ -1,0 +1,13 @@
+# Merx comes with a default orders section (https://merx.wagnerwagner.de/docs/blueprints/sections#orders).
+# You could use the default section with `extends: sections/orders` in any blueprint as described in the Kirby documentation (https://getkirby.com/docs/guide/blueprints/extending-blueprints#reusing-and-extending-sections)
+# In this example we want to extend the Merx section and modify the `text` option.
+# `extends: section/orders` won’t work as this would end up in an endless loop.
+# `ww.merx.sections/orders` is an alias of `sections/orders`. So we can use this alias and overwrite the `text` option.
+
+extends: ww.merx.sections/orders
+
+# The `page` variable is an order page. In our `order` blueprint we require name and city.
+# So we can safely output these fields next to the invoiceNumber.
+text: "#{{ page.invoiceNumber }} – {{ page.name }}, {{ page.city }}"
+
+info: "{{ page.formattedSum }} | {{ page.invoiceDate.toIntlDate }}"

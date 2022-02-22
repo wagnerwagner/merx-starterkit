@@ -1,0 +1,4 @@
+fields:
+  alt:
+    label: Alt
+    type: text

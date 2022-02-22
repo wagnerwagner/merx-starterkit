@@ -8,6 +8,7 @@ Icon
 # Temporary files
 # ---------------
 
+/node_modules
 /media/*
 !/media/index.html
 
@@ -28,6 +29,7 @@ Icon
 # ---------------------------
 
 /content/**/order.txt
+/content/**/order.*.txt
 
 
 # Editors
@@ -37,6 +39,7 @@ Icon
 *.sublime-workspace
 /.vscode
 /.idea
+/.nova
 
 
 # Cache Files
@@ -64,3 +67,15 @@ Icon
 # ---------------
 
 /site/config/.license
+
+
+# Development configurations
+# ---------------
+
+/site/config/config.starterkit.merx.wagnerwagner.local.php
+
+
+# Other
+# ---------------------------
+
+/.intelephense-alias.php

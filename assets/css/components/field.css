@@ -1,0 +1,44 @@
+.field label {
+  display: block;
+  font-weight: 600;
+}
+
+.field label abbr {
+  color: var(--color-gray-500);
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="textarea"],
+.field .StripeElement {
+  margin-top: var(--spacing-s);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--spacing-s);
+  border: 1px solid var(--color-gray-400);
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  background-color: var(--color-white);
+}
+
+.field[data-type="radio"],
+.field[data-type="checkbox"] {
+  display: flex;
+  align-items: start;
+}
+.field[data-type="radio"] label,
+.field[data-type="checkbox"] label {
+  font-weight: 400;
+}
+.field[data-type="radio"] input,
+.field[data-type="checkbox"] input {
+  height: calc(1rem * var(--line-height));
+  margin-right: var(--spacing-s);
+  flex-shrink: 0;
+}
+
+.field .error {
+  margin-top: var(--spacing-xs);
+  font-size: var(--text-s);
+}

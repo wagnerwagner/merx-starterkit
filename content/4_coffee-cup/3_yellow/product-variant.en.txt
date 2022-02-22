@@ -1,0 +1,20 @@
+Variantname: Yellow
+
+----
+
+Price: 15
+
+----
+
+Tax: default
+
+----
+
+Stock: 22
+
+----
+
+Thumb:
+
+- >
+  taisiia-shestopal-0rrhuwyzhbm-unsplash.jpg

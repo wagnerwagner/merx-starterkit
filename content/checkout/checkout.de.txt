@@ -1,0 +1,5 @@
+Title: Kasse
+
+----
+
+Slug: kasse

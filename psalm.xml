@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="4"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <file name=".intelephense-alias.php" />
+        <directory name="site" />
+        <ignoreFiles>
+            <directory name="kirby" />
+            <directory name="vendor" />
+            <directory name="site/plugins" />
+        </ignoreFiles>
+    </projectFiles>
+    <extraFiles>
+        <directory name="kirby" />
+    </extraFiles>
+    <globals>
+        <var name="page" type="Kirby\Cms\Page" />
+        <var name="site" type="Kirby\Cms\Site" />
+        <var name="kirby" type="Kirby\Cms\App" />
+    </globals>
+    <stubs>
+        <file name="kirby/config/helpers.php" />
+        <file name="site/plugins/merx/index.php" />
+    </stubs>
+    <issueHandlers>
+      <!-- Don't warn about "$this in a non-class context" in the config dir -->
+      <InvalidScope>
+          <errorLevel type="suppress">
+              <directory name="site/config" />
+          </errorLevel>
+      </InvalidScope>
+  </issueHandlers>
+</psalm>

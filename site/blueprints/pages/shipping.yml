@@ -1,0 +1,34 @@
+title:
+  en: Shipping
+  de: Versand
+
+status:
+  draft: true
+  unlisted: true
+
+options:
+  duplicate: false
+
+image:
+  icon: box
+
+fields:
+  extends: fields/product-standards
+  stock: false
+  freeShipping:
+    extends: fields/price
+    required: false
+    label:
+      en: Free shipping from
+      de: Kostenloser Versand ab
+    placeholder:
+      en: Always free shipping
+      de: Immer kostenloser Versand
+    width: 1/3
+  info:
+    type: info
+    text:
+      en: >
+        The shipping cost of {{ page.price.toFormattedPrice }} (price) will be automatically added to the cart as long as the amount is below {{ page.freeShipping.toFormattedPrice }} (Free shipping from).
+      de: >
+        Die Versandkosten von {{ page.price.toFormattedPrice }} (Preis) werden dem Warenkorb automatisch hinzugefügt, so lange der Betrag von {{ page.freeShipping.toFormattedPrice }} (Kostenloser Versand ab) unterschritten ist.

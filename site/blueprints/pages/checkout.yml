@@ -1,0 +1,10 @@
+title: Checkout
+icon: credit-card
+options:
+  changeStatus: false
+  delete: false
+  duplicate: false
+
+fields:
+  info:
+    text: Lorem Ipsum

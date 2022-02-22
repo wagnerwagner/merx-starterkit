@@ -1,0 +1,4 @@
+.order .cart {
+  background-color: var(--color-white);
+  padding: var(--spacing-l);
+}

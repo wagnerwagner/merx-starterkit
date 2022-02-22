@@ -1,0 +1,17 @@
+Title: Shipping
+
+----
+
+Price: 5.99
+
+----
+
+Tax: default
+
+----
+
+Freeshipping: 40
+
+----
+
+Stock: 

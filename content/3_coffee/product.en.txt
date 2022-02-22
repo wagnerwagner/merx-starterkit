@@ -1,0 +1,19 @@
+Title: Coffee
+
+----
+
+Price: 5.99
+
+----
+
+Tax: reduced
+
+----
+
+Blocks: [{"content":{"text":"<p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>"},"id":"40b21d48-da5c-4f3e-8329-c0136e1f151a","isHidden":false,"type":"text"}]
+
+----
+
+Thumb:
+
+- mike-kenneally-td4dbagg2we-unsplash.jpg

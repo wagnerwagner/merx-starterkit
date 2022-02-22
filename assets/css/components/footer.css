@@ -1,0 +1,11 @@
+.footer {
+  margin-top: auto;
+}
+
+.footer::before {
+  content: '';
+  display: block;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-m);
+  border-top: 2px solid var(--color-black);
+}

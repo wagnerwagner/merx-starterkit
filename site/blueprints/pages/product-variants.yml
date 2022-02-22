@@ -1,0 +1,38 @@
+# This blueprint is a container for a product with different variants. (e.g. a jeans with different sizes)
+
+title:
+  en: Product (with Variants)
+  de: Produkt (mit Varianten)
+
+navigation:
+  template:
+    - product
+    - product-variants
+
+image:
+  query: page.thumb.toFile
+  cover: true
+
+sections:
+  variants:
+    type: pages
+    templates: product-variant
+    text: "{{ page.variantName }}"
+    info: "{{ page.price.toFormattedPrice }}, Stock: {{ page.stock }}"
+  fields:
+    type: fields
+    fields:
+      blocks:
+        type: blocks
+        width: 2/3
+      defaultVariant:
+        label:
+          en: Default Variant
+          de: Standard-Variante
+        type: pages
+        text: "{{ page.variantName }}"
+        info: "{{ page.price.toFormattedPrice }}, Stock: {{ page.stock }}"
+        translate: false
+        multiple: false
+        query: page.variants
+        width: 1/3

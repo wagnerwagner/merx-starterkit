@@ -1,0 +1,23 @@
+Title: Blue
+
+----
+
+Variantname: Blue
+
+----
+
+Price: 15
+
+----
+
+Tax: default
+
+----
+
+Stock: 14
+
+----
+
+Thumb:
+
+- martin-widenka-0ri80lqco18-unsplash.jpg

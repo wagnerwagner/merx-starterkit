@@ -1,0 +1,23 @@
+title: page.title.product
+navigation:
+  template:
+    - product
+    - product-variants
+
+image:
+  query: page.thumb.toFile
+  cover: true
+
+fields:
+  extends: fields/product-standards
+  blocks:
+    type: blocks
+    width: 2/3
+  thumb:
+    type: files
+    multiple: false
+    layout: cards
+    query: page.images
+    require: true
+    width: 1/3
+    translate: false

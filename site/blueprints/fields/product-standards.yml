@@ -1,0 +1,28 @@
+type: group
+fields:
+  price:
+    extends: fields/price
+    width: 1/3
+  tax:
+    # This could be a simple number field.
+    # For this example we use a global storage with different tax rates. In this case there is a `default` and a `reduced` tax which is defined in `site/config/config.php`. The key (`default` or `reduced`) is stored in the tax field. Because of this we need to transform the `key` (e.g. `reduced ) into a number field (e.g. `7`) with the help of Page Models. (see `site/models/product.php` and `site/models/product-variant.php`).
+    # Why do we want this? When the tax for products with reduced tax rate changes (e.g. from 7 to 5) we only have to change this in one place. Otherwise we would need to change the tax for every product.
+    label: field.tax-rate
+    type: select
+    options: query
+    query:
+      fetch: kirby.option('taxRates')
+      text: "{{ arrayItem.value }} % ({{ arrayItem.key }})"
+      value: "{{ arrayItem.key }}"
+    translate: false
+    width: 1/3
+  stock:
+    label:
+      en: Stock
+      de: Verfügbare Produkte
+    type: number
+    placeholder:
+      en: infinite
+      de: unendlich
+    translate: false
+    width: 1/3
