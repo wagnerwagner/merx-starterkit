@@ -7,6 +7,7 @@ class Cart {
     this.lang = document.querySelector('html').lang;
 
     this.element = element;
+    this.cartDetailsElement = document.querySelector('.details-cart');
     this.countElement = document.querySelector('.cart-count');
 
     // this object will be used to store the cart data we are loading from the api.
@@ -48,17 +49,17 @@ class Cart {
       };
     }
 
-    this.element.addEventListener('click', (event) => {
+    this.cartDetailsElement.addEventListener('click', (event) => {
       event.stopPropagation();
     });
 
     document.addEventListener('click', () => {
-      this.element.removeAttribute('open');
+      this.cartDetailsElement.removeAttribute('open');
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
-        this.element.removeAttribute('open');
+        this.cartDetailsElement.removeAttribute('open');
       }
     });
 
@@ -207,6 +208,10 @@ class Cart {
       id,
       quantity,
     }).finally(() => {
+      this.cartDetailsElement.setAttribute('open', '');
+      this.cartDetailsElement.scrollIntoView({
+        behavior: 'smooth',
+      });
       this.element.classList.remove('-loading');
     });
   }

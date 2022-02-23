@@ -33,7 +33,7 @@
 }
 .details-cart .cart {
   position: absolute;
-  top: 3rem;
+  top: calc(var(--text-m) * var(--line-height) + var(--spacing-m) * 2);
   right: 0;
   display: flex;
   flex-direction: column;
