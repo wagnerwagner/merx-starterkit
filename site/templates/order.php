@@ -1,5 +1,12 @@
 <?php
 /**
+ * SECURITY ADVICE
+ * This page contains (sensitive) user data, such as name, address, email, etc.
+ * By default this page is only protected by its cryptic URL (e.g. /orders/e8vsmomjbb8vjtp5).
+ * These URLs can’t be guessed but if an attacker knows the URL it has access to user data.
+ * To prevent this, you might add an extra layer of security.
+ * More information: https://merx.wagnerwagner.de/docs/security
+ *
  * @var OrderPage $page
  * @var string $paymentMethod
  * @var string $sum
