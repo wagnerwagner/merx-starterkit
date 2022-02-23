@@ -3,7 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title><?= $page->title() ?> … <?= $site->title() ?></title>
+  <?php /** Make sure order pages are not indexed by search engines. */ ?>
+  <?php if (option('debug') === true || $page->intendedTemplate()->name() === 'order'): ?>
+    <meta name="robots" content="noindex,nofollow">
+  <?php endif; ?>
+  <title><?= $page->title() ?> – <?= $site->title() ?></title>
   <?= css('assets/css/index.css') ?>
   <?= js('assets/js/cart.js', ['defer' => true]) ?>
   <?php if (in_array($page->intendedTemplate()->name(), ['product', 'product-variants'])) : ?>
