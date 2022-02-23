@@ -69,10 +69,11 @@ Icon
 /site/config/.license
 
 
-# Development configurations
+# Development/Live configurations
 # ---------------
 
 /site/config/config.starterkit.merx.wagnerwagner.local.php
+/site/config/config.starterkit.merx.wagnerwagner.de.php
 
 
 # Other
