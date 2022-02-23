@@ -209,9 +209,6 @@ class Cart {
       quantity,
     }).finally(() => {
       this.cartDetailsElement?.setAttribute('open', '');
-      this.cartDetailsElement?.scrollIntoView({
-        behavior: 'smooth',
-      });
       this.element.classList.remove('-loading');
     });
   }
