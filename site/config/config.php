@@ -23,6 +23,28 @@ return [
     ],
 
     /**
+     * You MUST add sandbox/test keys to make the shop work with Stripe and/or PayPal.
+     * For production mode (to make real payments) you have to add the live keys,
+     * set production to true and add the Merx license.
+     *
+     * You can add custom keys for specific domains. The Starterkit demo has a custom
+     * config file (config.starterkit.merx.wagnerwagner.de.php) the its secret keys.
+     * More information: https://getkirby.com/docs/guide/configuration#multi-environment-setup
+     */
+    'ww.merx.stripe.test.publishable_key' => '',
+    'ww.merx.stripe.test.secret_key' => '',
+    'ww.merx.paypal.sandbox.clientID' => '',
+    'ww.merx.paypal.sandbox.secret' => '',
+
+    'ww.merx.stripe.live.publishable_key' => '',
+    'ww.merx.stripe.live.secret_key' => '',
+    'ww.merx.paypal.live.clientID' => '',
+    'ww.merx.paypal.live.secret' => '',
+
+    'ww.merx.production' => false,
+    'ww.merx.license' => 'MERX-XXXXXXXX-XXXXXXXX',
+
+    /**
      * A custom payment gateway (payment method). For the prepayment gateway no additional action is required.
      * The user will directly be redirected to the order page.
      * https://merx.wagnerwagner.de/docs/options#gateways
@@ -80,6 +102,7 @@ return [
         'ww.merx.cart' => function ($cart) {
             /**
              * Update shipping
+             * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts
              */
             $site = site();
             if ($site->shippingPage()) {
@@ -94,6 +117,7 @@ return [
         'ww.merx.completePayment:after' => function (OrderPage $orderPage) {
             /**
              * Update stock
+             * https://merx.wagnerwagner.de/cookbooks/stock-management
              */
             if (option('debug') !== true) {
                 foreach($orderPage->cart() as $cartItem) {
