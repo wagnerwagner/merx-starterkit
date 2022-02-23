@@ -49,17 +49,17 @@ class Cart {
       };
     }
 
-    this.cartDetailsElement.addEventListener('click', (event) => {
+    this.cartDetailsElement?.addEventListener('click', (event) => {
       event.stopPropagation();
     });
 
     document.addEventListener('click', () => {
-      this.cartDetailsElement.removeAttribute('open');
+      this.cartDetailsElement?.removeAttribute('open');
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
-        this.cartDetailsElement.removeAttribute('open');
+        this.cartDetailsElement?.removeAttribute('open');
       }
     });
 
@@ -208,8 +208,8 @@ class Cart {
       id,
       quantity,
     }).finally(() => {
-      this.cartDetailsElement.setAttribute('open', '');
-      this.cartDetailsElement.scrollIntoView({
+      this.cartDetailsElement?.setAttribute('open', '');
+      this.cartDetailsElement?.scrollIntoView({
         behavior: 'smooth',
       });
       this.element.classList.remove('-loading');
