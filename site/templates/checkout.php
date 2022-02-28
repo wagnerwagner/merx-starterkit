@@ -38,8 +38,8 @@
         <p>You can use the following credentials to test the checkout.</p>
         <h3>PayPal</h3>
         <p>
-          <strong>User</strong> <code>buha-buyer@wagnerwagner.de</code><br>
-          <strong>Password</strong> <code>Ul7GuQ-q5aXI3-A17xH5</code><br>
+          <strong>User</strong> <code>sb-47n60q14173052@personal.example.com</code><br>
+          <strong>Password</strong> <code>XTDeYw-P7Lzpc-L1u7xd</code><br>
         </p>
         <h3>Credit Card</h3>
         <p>
