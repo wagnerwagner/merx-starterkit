@@ -5,7 +5,12 @@
  * custom global functions and site methods.
  */
 
-function checkStock(ProductPage|ProductVariantPage $productPage, float $quantity)
+/**
+  * Checks if requested amount of a specific item could be added to cart
+  *
+  * @param ProductPage|ProductVariantPage $productPage
+  */
+function checkStock(object $productPage, float $quantity)
 {
     $siteMaxAmount = $productPage->site()->maxAmount()->toFloat();
     $maxAmount = $productPage->maxAmount();
@@ -46,8 +51,10 @@ Kirby::plugin('site/site', [
             $field,
             int $dateType = IntlDateFormatter::MEDIUM,
             int $timeType = IntlDateFormatter::SHORT,
-            IntlTimeZone|DateTimeZone|string|null $timezone = null,
-            IntlCalendar|int|null $calendar = null,
+            /** @var IntlTimeZone|DateTimeZone|string|null $timezone */
+            $timezone = null,
+            /** @var IntlCalendar|int|null $calendar */
+            $calendar = null,
             string $pattern = ""
         ): ?string
         {

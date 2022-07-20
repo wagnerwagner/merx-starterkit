@@ -3,7 +3,7 @@
     "description": "Starterkit for Merx.",
     "license": "proprietary",
     "require": {
-      "php": ">=8.0.0 <8.2.0"
+      "php": ">=7.4.0 <8.2.0"
     },
     "scripts": {
         "analyze": [
