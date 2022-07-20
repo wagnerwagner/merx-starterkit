@@ -17,6 +17,7 @@
     </projectFiles>
     <extraFiles>
         <directory name="kirby" />
+        <directory name="site/plugins" />
     </extraFiles>
     <globals>
         <var name="page" type="Kirby\Cms\Page" />
