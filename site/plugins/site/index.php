@@ -58,6 +58,10 @@ Kirby::plugin('site/site', [
             string $pattern = ""
         ): ?string
         {
+            if (empty($field->toString())) {
+                // return string when field is empty
+                return $field->toString();
+            }
             $locale = Kirby\Toolkit\Locale::get(LC_TIME);
             $date = new Kirby\Toolkit\Date($field->toString());
             if ($timezone === null) {
