@@ -25,7 +25,7 @@ return [
     'cart.free-shipping' => 'free',
     'cart.to-checkout' => 'To Checkout',
 
-    'paymentMethod.creditCard.label' => 'Credit Card',
+    'paymentMethod.creditCardSca.label' => 'Credit Card',
     'paymentMethod.paypal.label' => 'PayPal',
     'paymentMethod.paypal.submitText' => 'Continue to PayPal',
     'paymentMethod.prepayment.label' => 'Prepayment',
