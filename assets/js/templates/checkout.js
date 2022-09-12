@@ -98,7 +98,7 @@ class Checkout {
 
   // eslint-disable-next-line class-methods-use-this
   get clientSecret() {
-    return fetch('api/shop/client-secret')
+    return fetch('/api/shop/client-secret')
       .then((response) => response.json())
       .then((data) => {
         if (data.clientSecret) {
