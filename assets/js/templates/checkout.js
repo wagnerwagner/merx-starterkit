@@ -175,6 +175,9 @@ class Checkout {
       await fetch(formElement.action, {
         body: formData,
         method: 'POST',
+        headers: {
+          'x-language': document.querySelector('html').lang,
+        },
       })
         .then((response) => response.json())
         .then((data) => {
