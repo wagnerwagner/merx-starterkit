@@ -6,6 +6,8 @@ Blocks: [{"content":{"text":"<p>Lorem ipsum dolor sit amet, consectetur adipisic
 
 ----
 
-Defaultvariant:
+Defaultvariant: - coffee-cup/yellow
 
-- coffee-cup/yellow
+----
+
+Uuid: oTaalAujYmkSq8wZ
