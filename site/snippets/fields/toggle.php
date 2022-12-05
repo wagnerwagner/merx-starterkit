@@ -37,10 +37,18 @@
 >
   <input
     <?= Html::attr([
+      'type' => 'hidden',
+      'name' => $field['name'],
+      'value' => 'false',
+    ]) ?>
+  >
+  <input
+    <?= Html::attr([
       'type' => 'checkbox',
       'name' => $field['name'],
       'id' => $field['name'],
       'checked' => $field['default'],
+      'value' => 'true',
     ]) ?>
   >
   <label for="<?= $field['name'] ?>">
