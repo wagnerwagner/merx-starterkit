@@ -37,6 +37,10 @@
   margin-right: var(--spacing-s);
   flex-shrink: 0;
 }
+.field[data-type="radio"] input:disabled + label,
+.field[data-type="checkbox"] input:disabled + label {
+  color: var(--color-gray-600);
+}
 
 .field .error {
   margin-top: var(--spacing-xs);

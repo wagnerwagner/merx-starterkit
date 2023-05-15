@@ -61,24 +61,28 @@ class Checkout {
         fontSize: '16px',
       },
     };
-    this.stripe = Stripe(stripePublishableKey);
-    this.stripeElements = this.stripe.elements({
-      locale: document.querySelector('html').lang,
-    });
 
-    // Create Stripe Card Element
-    // https://stripe.com/docs/js/elements_object/create_element
-    const stripeCardElement = this.stripeElements.create('card', {
-      hidePostalCode: true,
-      style: stripeStyle,
-    });
-    const stripeIbanElement = this.stripeElements.create('iban', {
-      supportedCountries: ['SEPA'],
-      style: stripeStyle,
-    });
-    // https://stripe.com/docs/js/element/mount
-    stripeCardElement.mount('#stripe-card');
-    stripeIbanElement.mount('#stripe-iban');
+    // check if stripePublishableKey is null or empty
+    if (stripePublishableKey) {
+      this.stripe = Stripe(stripePublishableKey);
+      this.stripeElements = this.stripe.elements({
+        locale: document.querySelector('html').lang,
+      });
+
+      // Create Stripe Card Element
+      // https://stripe.com/docs/js/elements_object/create_element
+      const stripeCardElement = this.stripeElements.create('card', {
+        hidePostalCode: true,
+        style: stripeStyle,
+      });
+      const stripeIbanElement = this.stripeElements.create('iban', {
+        supportedCountries: ['SEPA'],
+        style: stripeStyle,
+      });
+      // https://stripe.com/docs/js/element/mount
+      stripeCardElement.mount('#stripe-card');
+      stripeIbanElement.mount('#stripe-iban');
+    }
 
     submitElement.dataset.defaultSubmitText = submitElement.innerText;
 

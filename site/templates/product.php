@@ -4,7 +4,7 @@
 <body>
   <?php snippet('header') ?>
 
-  <main class="grid product" data-id="<?= $page->id() ?>">
+  <main class="grid product" data-id="<?= $page->uuid() ?>">
     <h1 data-width="1/1"><?= $page->title() ?></h1>
     <img
       src="<?= $page->thumb()->toFile()->thumb('default')->url() ?>"
