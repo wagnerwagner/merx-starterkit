@@ -15,20 +15,11 @@ image:
 fields:
   extends: fields/product-standards
   stock: false
-  freeShipping:
-    extends: fields/price
-    required: false
-    label:
-      en: Free shipping from
-      de: Kostenloser Versand ab
-    placeholder:
-      en: Always free shipping
-      de: Immer kostenloser Versand
-    width: 1/3
+  shipping: false
   info:
     type: info
     text:
       en: >
-        The shipping cost of {{ page.price.toFormattedPrice }} (price) will be automatically added to the cart as long as the amount is below {{ page.freeShipping.toFormattedPrice }} (Free shipping from).
+        If the shopping cart contains a product with the Shipping switch set to “Yes”, the shipping costs will be added.
       de: >
-        Die Versandkosten von {{ page.price.toFormattedPrice }} (Preis) werden dem Warenkorb automatisch hinzugefügt, so lange der Betrag von {{ page.freeShipping.toFormattedPrice }} (Kostenloser Versand ab) unterschritten ist.
+        Wenn der Warenkorb ein Produkt enthält, bei dem der Versandkosten-Schalter auf „Ja“ gestellt ist, werden die Versandkosten hinzugefügt.

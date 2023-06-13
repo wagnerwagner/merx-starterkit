@@ -2,7 +2,7 @@ type: group
 fields:
   price:
     extends: fields/price
-    width: 1/3
+    width: 1/4
   tax:
     # This could be a simple number field.
     # For this example we use a global storage with different tax rates. In this case there is a `default` and a `reduced` tax which is defined in `site/config/config.php`. The key (`default` or `reduced`) is stored in the tax field. Because of this we need to transform the `key` (e.g. `reduced ) into a number field (e.g. `7`) with the help of Page Models. (see `site/models/product.php` and `site/models/product-variant.php`).
@@ -15,7 +15,7 @@ fields:
       text: "{{ arrayItem.value }} % ({{ arrayItem.key }})"
       value: "{{ arrayItem.key }}"
     translate: false
-    width: 1/3
+    width: 1/4
   stock:
     label:
       en: Stock
@@ -25,4 +25,20 @@ fields:
       en: infinite
       de: unendlich
     translate: false
-    width: 1/3
+    width: 1/4
+  shipping:
+    label:
+      en: Shipping
+      de: Versandkosten
+    type: toggle
+    text:
+      -
+        en: "No"
+        de: Nein
+      -
+        en: "Yes"
+        de: Ja
+    translate: false
+    width: 1/4
+    help: |
+      [{{ site.shippingPage.price.toFormattedPrice }}]({{ site.shippingPage.panel.url }})

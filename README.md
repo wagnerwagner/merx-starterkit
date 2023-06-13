@@ -12,7 +12,9 @@ It is ideal for new users to explore many of Merx’s possibilities.
 ## Features of Starterkit
 
 - Product Variants (red or blue coffee cup)
-- Handling of shipping cost with free shipping (Shipping costs € 5,99 or free shipping if value of cart is more than € 40.)
+- **Shipping per product** (Special for this branch)
+  - Each product has a toggle for shipping
+  - If the cart includes a product with activated shipping, the shipping costs are added to the cart
 - Multiple tax rates (7% and 19%)
 - Multi-language frontend and Panel (English and German)
 - Multiple payment methods

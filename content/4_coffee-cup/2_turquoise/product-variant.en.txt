@@ -14,7 +14,12 @@ Stock: 5
 
 ----
 
-Thumb:
+Shipping: true
 
-- >
-  taisiia-shestopal-xo9notfy4mu-unsplash.jpg
+----
+
+Thumb: - file://o2RLZBvaOWm0Hvtw
+
+----
+
+Uuid: RHO9B2WM5W3U1KlU

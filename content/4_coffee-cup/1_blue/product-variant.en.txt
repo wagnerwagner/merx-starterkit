@@ -18,6 +18,12 @@ Stock: 14
 
 ----
 
-Thumb:
+Shipping: true
 
-- martin-widenka-0ri80lqco18-unsplash.jpg
+----
+
+Thumb: - file://gNblmBnJAIVEe9eY
+
+----
+
+Uuid: 0Pc2eVgfRaQv7q1S

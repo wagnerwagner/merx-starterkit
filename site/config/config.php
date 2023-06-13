@@ -1,5 +1,7 @@
 <?php
 
+use Wagnerwagner\Merx\Cart;
+
 return [
     'languages' => true,
     'thumbs' => [
@@ -99,7 +101,7 @@ return [
                 // header('Content-Security-Policy: default-src \'none\'; script-src \'self\' https://js.stripe.com; connect-src \'self\'; img-src \'self\'; style-src \'self\'; base-uri \'self\'; form-action \'self\'; child-src https://js.stripe.com');
             }
         },
-        'ww.merx.cart' => function ($cart) {
+        'ww.merx.cart' => function (Cart $cart) {
             /**
              * Update shipping
              * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts
@@ -107,9 +109,14 @@ return [
             $site = site();
             if ($site->shippingPage()) {
                 $shippingId = $site->shippingPage()->id();
-                $freeShipping = $site->shippingPage()->freeShipping()->or('0')->toFloat();
                 $cart->remove($shippingId);
-                if ($cart->count() > 0 && $cart->getSum() < $freeShipping) {
+                $cartItemsWithShipping = $cart->filter(function ($item) {
+                    if ($productPage = page($item['id'])) {
+                        return $productPage->shipping()->toBool();
+                    }
+                    return true;
+                });
+                if ($cartItemsWithShipping->count() > 0) {
                     $cart->add($shippingId);
                 }
             }
