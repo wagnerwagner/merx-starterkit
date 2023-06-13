@@ -5,10 +5,6 @@
 This Starterkit is a complete online shop with commented blueprints, templates and JavaScript code.  
 It is ideal for new users to explore many of Merx’s possibilities.
 
-## Live Demo
-
-[starterkit.merx.wagnerwagner.de](https://starterkit.merx.wagnerwagner.de)
-
 ## Features of Starterkit
 
 - Product Variants (red or blue coffee cup)
