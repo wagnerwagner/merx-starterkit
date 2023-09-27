@@ -69,19 +69,27 @@ class Checkout {
         locale: document.querySelector('html').lang,
       });
 
-      // Create Stripe Card Element
-      // https://stripe.com/docs/js/elements_object/create_element
-      const stripeCardElement = this.stripeElements.create('card', {
-        hidePostalCode: true,
-        style: stripeStyle,
-      });
-      const stripeIbanElement = this.stripeElements.create('iban', {
-        supportedCountries: ['SEPA'],
-        style: stripeStyle,
-      });
-      // https://stripe.com/docs/js/element/mount
-      stripeCardElement.mount('#stripe-card');
-      stripeIbanElement.mount('#stripe-iban');
+      if (document.getElementById('stripe-card')) {
+        // Create Stripe Card Element
+        // https://stripe.com/docs/js/elements_object/create_element
+        const stripeCardElement = this.stripeElements.create('card', {
+          hidePostalCode: true,
+          style: stripeStyle,
+        });
+        // https://stripe.com/docs/js/element/mount
+        stripeCardElement.mount('#stripe-card');
+      }
+
+      if (document.getElementById('stripe-iban')) {
+        // Create Stripe IBAN Element
+        // https://stripe.com/docs/js/elements_object/create_element
+        const stripeIbanElement = this.stripeElements.create('iban', {
+          supportedCountries: ['SEPA'],
+          style: stripeStyle,
+        });
+        // https://stripe.com/docs/js/element/mount
+        stripeIbanElement.mount('#stripe-iban');
+      }
     }
 
     submitElement.dataset.defaultSubmitText = submitElement.innerText;
