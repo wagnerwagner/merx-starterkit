@@ -73,7 +73,7 @@ fields:
       de: DE
     required: true
     validate:
-      alpha:
+      alpha: true
       minLength: 2
       maxLength: 2
     translate: false
