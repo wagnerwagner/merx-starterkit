@@ -9,7 +9,7 @@
 
 class OrderPage extends OrderPageAbstract
 {
-    public function title(): \Kirby\Cms\Field
+    public function title(): Field
     {
         return new Field($this, 'title', t('order.invoice') . ' ' . $this->invoiceNumber());
     }
