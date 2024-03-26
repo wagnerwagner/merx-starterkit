@@ -27,6 +27,9 @@
       <?php foreach ($fields as $field) : ?>
         <?= snippet(['fields/' . $field['type'], 'fields/text'], compact('field')) ?>
       <?php endforeach; ?>
+
+      <?php snippet('coupon') ?>
+
       <?php snippet('payment-methods') ?>
       <div data-width="1/1">
         <button type="submit" class="button">Buy</button>

@@ -99,7 +99,7 @@ return [
                 // header('Content-Security-Policy: default-src \'none\'; script-src \'self\' https://js.stripe.com; connect-src \'self\'; img-src \'self\'; style-src \'self\'; base-uri \'self\'; form-action \'self\'; child-src https://js.stripe.com');
             }
         },
-        'ww.merx.cart' => function ($cart) {
+        'ww.merx.cart' => function (\Wagnerwagner\Merx\Cart $cart) {
             /**
              * Update shipping
              * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts

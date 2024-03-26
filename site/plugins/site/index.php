@@ -44,6 +44,8 @@ Kirby::plugin('site/site', [
             require_once(__DIR__ . '/api/routes/cart-patch.php'),
             require_once(__DIR__ . '/api/routes/client-secret.php'),
             require_once(__DIR__ . '/api/routes/checkout-post.php'),
+            require_once(__DIR__ . '/api/routes/coupon-post.php'),
+            require_once(__DIR__ . '/api/routes/coupon-delete.php'),
         ],
     ],
     'fieldMethods' => [

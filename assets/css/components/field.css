@@ -14,7 +14,7 @@
   margin-top: var(--spacing-s);
   box-sizing: border-box;
   width: 100%;
-  padding: var(--spacing-s);
+  padding: calc(var(--spacing-s) - 1px);
   border: 1px solid var(--color-gray-400);
   font-size: inherit;
   font-family: inherit;
@@ -45,4 +45,8 @@
 .field .error {
   margin-top: var(--spacing-xs);
   font-size: var(--text-s);
+}
+
+.field > button {
+  margin-top: var(--spacing-s);
 }

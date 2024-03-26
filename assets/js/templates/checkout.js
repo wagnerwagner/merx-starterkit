@@ -5,6 +5,9 @@ class Checkout {
     this.element = element;
     this.formElement = element.querySelector('#checkout-form');
     this.paymentMethodsElement = element.querySelector('.payment-methods');
+    this.couponcodeElement = this.element.querySelector('[name="couponcode"]');
+    this.couponAddButtonElement = element.querySelector('button[name="add-coupon"]');
+    this.couponRemoveButtonElement = element.querySelector('button[name="remove-coupon"]');
 
     // ELEMENTS
     const paymentMethodInputElements = element.querySelectorAll('input[name="paymentMethod"]');
@@ -106,6 +109,9 @@ class Checkout {
     });
 
     element.addEventListener('submit', this.onSubmit.bind(this));
+    this.couponAddButtonElement.addEventListener('click', this.onCouponAdd.bind(this));
+    this.couponRemoveButtonElement.addEventListener('click', this.onCouponRemove.bind(this));
+    window.cart.element.addEventListener('ready', this.updateCouponElements.bind(this));
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -133,6 +139,85 @@ class Checkout {
 
   get loading() {
     return this.element.classList.contains('is-loading');
+  }
+
+  updateCouponElements() {
+    const { cart } = window;
+    const hasDiscount = cart.data.discount !== null;
+    this.couponRemoveButtonElement.toggleAttribute('hidden', !hasDiscount);
+    this.couponAddButtonElement.toggleAttribute('hidden', hasDiscount);
+    this.couponcodeElement.toggleAttribute('hidden', hasDiscount);
+  }
+
+  async onCouponRemove(event) {
+    event.preventDefault();
+    this.loading = true;
+
+    try {
+      await fetch(this.couponRemoveButtonElement.formAction, {
+        method: 'DELETE',
+        headers: {
+          'x-language': document.querySelector('html').lang,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            const { cart } = window;
+            cart.data = data.data;
+            cart.updateHTML();
+            this.updateCouponElements();
+          } else {
+            throw data;
+          }
+        });
+    } catch (error) {
+      this.paymentMethodsElement.appendChild(this.createErrorElement(error.message));
+    }
+    this.loading = false;
+  }
+
+  async onCouponAdd(event) {
+    const { element, formElement } = this;
+    const formData = new FormData();
+
+    event.preventDefault();
+    this.loading = true;
+
+    // Remove error elements
+    formElement.querySelectorAll('.error').forEach((errorElement) => errorElement.remove());
+
+    formData.append(this.couponcodeElement.name, this.couponcodeElement.value);
+
+    const createError = (message) => {
+      const fieldElement = element.querySelector(`.field[data-name="${this.couponcodeElement.name}"]`);
+      fieldElement.appendChild(this.createErrorElement(message));
+    };
+
+    try {
+      await fetch(this.couponAddButtonElement.formAction, {
+        body: formData,
+        method: 'POST',
+        headers: {
+          'x-language': document.querySelector('html').lang,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === 'ok') {
+            const { cart } = window;
+            cart.data = data.data;
+            cart.updateHTML();
+            this.updateCouponElements();
+            // TODO
+          } else {
+            throw data;
+          }
+        });
+    } catch (error) {
+      createError(error.message);
+    }
+    this.loading = false;
   }
 
   async onSubmit(event) {
@@ -208,4 +293,4 @@ class Checkout {
   }
 }
 
-document.querySelectorAll('.checkout').forEach((productElement) => new Checkout(productElement));
+document.querySelectorAll('.checkout').forEach((checkoutElement) => new Checkout(checkoutElement));

@@ -25,6 +25,7 @@ class Cart {
       'cart.change-quantity': 'Change quantity',
       'cart.price': 'Price',
       'cart.sum': 'Sum',
+      'cart.discount': 'Discount',
       'cart.shipping': 'Shipping',
       'cart.product': 'Product',
       'cart.free-shipping': 'free',
@@ -42,6 +43,7 @@ class Cart {
         'cart.change-quantity': 'Anzahl ändern',
         'cart.price': 'Preis',
         'cart.sum': 'Summe',
+        'cart.discount': 'Discount',
         'cart.shipping': 'Versand',
         'cart.product': 'Produkt',
         'cart.free-shipping': 'kostenlos',
@@ -64,7 +66,10 @@ class Cart {
     });
 
     // initially load cart data from api
-    this.request('cart');
+    (async () => {
+      await this.request('cart');
+      this.element.dispatchEvent(new Event('ready'));
+    })();
   }
 
   // helper method to handle different api request
@@ -178,6 +183,12 @@ class Cart {
             ${createCartItems(data.items)}
           </tbody>
           <tfoot>
+            ${data.discount !== null ? `
+              <tr>
+                <th colspan="3">${i18n['cart.discount']}</th>
+                <td>${data.discount}</td>
+              </tr>
+            ` : ''}
             <tr>
               <th colspan="3">${i18n['cart.shipping']}</th>
               <td>${data.shipping === null ? i18n['cart.free-shipping'] : data.shipping}</td>

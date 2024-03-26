@@ -1,0 +1,13 @@
+Title: Coupon
+
+----
+
+Price: -5
+
+----
+
+Tax: default
+
+----
+
+Stock:

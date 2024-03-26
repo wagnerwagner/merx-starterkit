@@ -67,6 +67,13 @@ return [
 
     'field.payment-method' => 'Payment method',
     'field.tax-rate' => 'Tax rate',
+
+    'coupon' => 'Coupon',
+    'coupon.code' => 'Coupon code',
+    'coupon.redeem' => 'Redeem code',
+    'coupon.remove' => 'Remove code',
+
+    'error.merx.coupon.invalid' => 'Coupon code is invalid',
   ],
   'url' => ''
 ];

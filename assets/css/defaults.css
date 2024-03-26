@@ -49,6 +49,10 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 /* HELPER CLASSES */
 .color-gray-100 {
   color: var(--color-gray-100);
@@ -144,6 +148,13 @@ button:not(:disabled) {
 .button[disabled] {
   color: var(--color-white);
   background-color: var(--color-gray-600);
+}
+.button-secondary {
+  display: inline-block;
+  padding: 0.5em;
+  font-weight: 500;
+  color: var(--color-black);
+  background-color: var(--color-gray-300);
 }
 .button-white {
   display: inline-block;

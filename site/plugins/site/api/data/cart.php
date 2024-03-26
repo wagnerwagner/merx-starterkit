@@ -12,7 +12,7 @@ return function ($status = 'ok', $code = 200) {
       $items includes every product. Shipping is handle as a normal product.
       In this case we want to filter out the shipping item and return this separately.
     */
-    $items = $cart->filter('template', '!=', 'shipping');
+    $items = $cart->filter('template', 'not in', ['shipping', 'coupon']);
 
     // add up quantities of “real” products (everything but “shipping”)
     $quantity = 0.0;
@@ -56,12 +56,21 @@ return function ($status = 'ok', $code = 200) {
         $shippingPrice += $shippingItem['price'];
     }
 
+    /*
+      Get discount price.
+    */
+    $discountPrice = 0;
+    foreach ($cart->filter('template', 'coupon') as $couponItem) {
+        $discountPrice += $couponItem['price'];
+    }
+
     return [
         'status' => $status,
         'code' => $code,
         'data' => [
             'items' => $items,
             'shipping' => $shippingPrice === 0 ? null : formatPrice($shippingPrice),
+            'discount' => $discountPrice === 0 ? null : formatPrice($discountPrice),
             'sum' => formatPrice($cart->getSum()),
             'tax' => formatPrice($cart->getTax()),
             'taxRates' => $taxRates,

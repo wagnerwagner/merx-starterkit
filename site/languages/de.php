@@ -67,6 +67,13 @@ return [
 
     'field.payment-method' => 'Bezahlmethode',
     'field.tax-rate' => 'Steuersatz',
+
+    'coupon' => 'Coupon',
+    'coupon.code' => 'Coupon Code',
+    'coupon.redeem' => 'Code einlösen',
+    'coupon.remove' => 'Code entfernen',
+
+    'error.merx.coupon.invalid' => 'Coupon Code ist nicht gültig',
   ],
   'url' => 'de',
 ];
