@@ -14,9 +14,9 @@ class ProductVariantsPage extends Page
     /**
      * Returns the thumb field of the default variant
      *
-     * @return \Kirby\Cms\Field|null
+     * @return \Kirby\Content\Field|null
      */
-    public function thumb(): ?\Kirby\Cms\Field
+    public function thumb(): ?\Field
     {
         if ($this->defaultVariant()) {
             return $this->defaultVariant()->thumb();
@@ -45,7 +45,7 @@ class ProductVariantsPage extends Page
         return $this->content()->defaultVariant()->toPage();
     }
 
-    public function price(): ?\Kirby\Cms\Field
+    public function price(): ?\Field
     {
         if ($this->defaultVariant()) {
             return $this->defaultVariant()->price();
