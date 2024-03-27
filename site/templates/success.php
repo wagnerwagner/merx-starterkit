@@ -7,6 +7,7 @@
  * the route is /success (https://merx.wagnerwagner.de/docs/options#successpage)
  */
 
+header('Cache-Control: no-store');
 $merx = merx();
 
 try {
