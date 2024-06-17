@@ -1,5 +1,8 @@
 /* global Stripe */
 
+/** @typedef {import("../../../node_modules/@stripe/stripe-js/dist/stripe-js/index").Stripe} Stripe */
+/** @typedef {import("../../../node_modules/@stripe/stripe-js/dist/stripe-js/index").StripeElements} StripeElements */
+
 class Checkout {
   constructor(element) {
     this.element = element;
@@ -64,7 +67,9 @@ class Checkout {
 
     // check if stripePublishableKey is null or empty
     if (stripePublishableKey) {
+      /** @type {Stripe} */
       this.stripe = Stripe(stripePublishableKey);
+      /** @type {StripeElements} */
       this.stripeElements = this.stripe.elements({
         locale: document.querySelector('html').lang,
       });
