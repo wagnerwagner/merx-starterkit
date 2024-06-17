@@ -114,8 +114,11 @@ class Checkout {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  get clientSecret() {
-    return fetch('/api/shop/client-secret')
+  getClientSecret(paymentMethod) {
+    const { protocol, host } = window.location;
+    const url = new URL('/api/shop/client-secret', `${protocol}//${host}`);
+    url.searchParams.set('payment-method', paymentMethod);
+    return fetch(url)
       .then((response) => response.json())
       .then((data) => {
         if (data.clientSecret) {
@@ -154,12 +157,11 @@ class Checkout {
     try {
       // Some payment method need additional JavaScript
       if (paymentMethod === 'credit-card-sca' || paymentMethod === 'sepa-debit') {
-        let source = null;
         let error = null;
         // Optional: Add billing details like name, postal code or city to the stripe request.
 
         if (paymentMethod === 'credit-card-sca') {
-          const clientSecret = await this.clientSecret;
+          const clientSecret = await this.getClientSecret('card');
           // https://stripe.com/docs/js/payment_intents/confirm_card_payment
           ({ error } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -171,17 +173,17 @@ class Checkout {
             },
           }));
         } else if (paymentMethod === 'sepa-debit') {
+          const clientSecret = await this.getClientSecret('sepa_debit');
           // https://stripe.com/docs/js/tokens_sources/create_source
-          ({ source, error } = await stripe.createSource(this.stripeElements.getElement('iban'), {
-            type: 'sepa_debit',
-            currency: 'eur',
-            owner: {
-              name: formElement.name.value,
-              email: formElement.email.value,
+          ({ error } = await stripe.confirmSepaDebitPayment(clientSecret, {
+            payment_method: {
+              sepa_debit: this.stripeElements.getElement('iban'),
+              billing_details: {
+                name: formElement.name.value,
+                email: formElement.email.value,
+              },
             },
           }));
-          // add stripe token to formData
-          formData.append('stripeToken', source?.id ?? null);
         }
         if (error) {
           throw error;
