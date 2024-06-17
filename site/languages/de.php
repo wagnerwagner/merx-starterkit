@@ -34,6 +34,8 @@ return [
     'paymentMethod.sofort.submitText' => 'Weiter zu Sofort',
     'paymentMethod.klarna.label' => 'Klarna',
     'paymentMethod.klarna.submitText' => 'Weiter zu Klarna',
+    'paymentMethod.klarna.label' => 'iDeal',
+    'paymentMethod.klarna.submitText' => 'Weiter zu iDeal',
 
     'product.add-to-cart' => 'In den Warenkorb',
     'product.including-tax' => 'Inklusive {tax}&nbsp;% Mehrwertsteuer',

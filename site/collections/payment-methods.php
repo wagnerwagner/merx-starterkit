@@ -35,5 +35,11 @@ return function (): Kirby\Toolkit\Collection
             'submitText' => t('paymentMethod.klarna.submitText'),
             'paymentProvider' => 'stripe',
         ],
+        'ideal' => [
+            'value' => 'ideal',
+            'label' => t('paymentMethod.ideal.label'),
+            'submitText' => t('paymentMethod.ideal.submitText'),
+            'paymentProvider' => 'stripe',
+        ],
     ]);
 };
