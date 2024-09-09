@@ -23,12 +23,6 @@ return function (): Kirby\Toolkit\Collection
             'label' => t('paymentMethod.sepaDebit.label'),
             'paymentProvider' => 'stripe',
         ],
-        'sofort' => [
-            'value' => 'sofort',
-            'label' => t('paymentMethod.sofort.label'),
-            'submitText' => t('paymentMethod.sofort.submitText'),
-            'paymentProvider' => 'stripe',
-        ],
         'klarna' => [
             'value' => 'klarna',
             'label' => t('paymentMethod.klarna.label'),

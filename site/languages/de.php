@@ -30,8 +30,6 @@ return [
     'paymentMethod.paypal.submitText' => 'Weiter zu PayPal',
     'paymentMethod.prepayment.label' => 'Vorkasse',
     'paymentMethod.sepaDebit.label' => 'SEPA-Lastschrift',
-    'paymentMethod.sofort.label' => 'Sofort',
-    'paymentMethod.sofort.submitText' => 'Weiter zu Sofort',
     'paymentMethod.klarna.label' => 'Klarna',
     'paymentMethod.klarna.submitText' => 'Weiter zu Klarna',
     'paymentMethod.ideal.label' => 'iDeal',
