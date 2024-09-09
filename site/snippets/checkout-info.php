@@ -42,7 +42,7 @@
       <p><a href="https://docs.stripe.com/payments/sepa-debit/accept-a-payment#test-integration" rel="noopener">docs.stripe.com/payments/sepa-debit/accept-a-payment#test-integration</a></p>
       <h3>Klarna</h3>
       <p>
-        <strong>Phone Germany</strong> <code>+4901761428434</code><br>
+        <strong>Phone Germany</strong> <code>+49017614284340</code><br>
         <strong>Phone Belgium</strong> <code>+32485121291</code>
       </p>
       <p>
