@@ -80,6 +80,7 @@ class Checkout {
         const stripeCardElement = this.stripeElements.create('card', {
           hidePostalCode: true,
           style: stripeStyle,
+          disableLink: true,
         });
         // https://stripe.com/docs/js/element/mount
         stripeCardElement.mount('#stripe-card');
@@ -174,7 +175,6 @@ class Checkout {
           }));
         } else if (paymentMethod === 'sepa-debit') {
           const clientSecret = await this.getClientSecret('sepa_debit');
-          // https://stripe.com/docs/js/tokens_sources/create_source
           ({ error } = await stripe.confirmSepaDebitPayment(clientSecret, {
             payment_method: {
               sepa_debit: this.stripeElements.getElement('iban'),
