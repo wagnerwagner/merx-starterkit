@@ -40,10 +40,9 @@
       <div class="text" data-width="1/2">
         <h2><?= t('order.payment') ?></h2>
         <p><?= tt('order.payment.text', compact('paymentMethod')) ?></p>
-        <?php if ($page->paymentMethod()->toString() === 'prepayment'): ?>
-          <?php if ($page->paymentComplete()->toBool() === true): ?>
-            <p><?= tt('order.payment.text.paid.date', ['datetime' => $page->paidDate()->toIntlDate()]) ?></p>
-          <?php else: ?>
+        <?php if ($page->paymentComplete()->toBool() === true): ?>
+          <p><?= tt('order.payment.text.paid.date', ['datetime' => $page->paidDate()->toIntlDate()]) ?></p>
+          <?php if ($page->paymentMethod()->toString() === 'prepayment' && $page->paymentComplete()->toBool() === false): ?>
             <p>
               <?= t('order.payment.text.not-yet-paid') ?><br>
               <?= tt('order.payment.text.invoice', compact('sum')) ?>
@@ -66,7 +65,6 @@
                 <td><?= $page->title() ?></td>
               </tr>
             </table>
-            <p></p>
           <?php endif; ?>
         <?php endif; ?>
       </div>
