@@ -18,6 +18,8 @@ Stock: 14
 
 ----
 
-Thumb:
+Thumb: - martin-widenka-0ri80lqco18-unsplash.jpg
 
-- martin-widenka-0ri80lqco18-unsplash.jpg
+----
+
+Uuid: Cjw5Lg5x6mpRrwzQ
