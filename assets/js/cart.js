@@ -131,7 +131,12 @@ class Cart {
               ${item.variant ? `<small>${item.variant}</small>` : ''}
             </a>
           </th>
-          <td>${createQuantitySelect(item)}</td>
+          <td>
+            <span class="cart-quantity">
+              ${createQuantitySelect(item)}
+              <button class="text-s color-gray-500" data-action="remove" data-key="${item.key}">${i18n['cart.item.remove']}</button>
+            </span>
+          </td>
           <td>${item.price}</td>
           <td>${item.sum}</td>
         </tr>
@@ -192,6 +197,12 @@ class Cart {
         ${(this.element.dataset.variant !== 'checkout') ? `<a href="${data.checkoutUrl}" class="button-white">${i18n['cart.to-checkout']}</a>` : ''}
       `;
 
+      this.element.querySelectorAll('button[data-action="remove"]').forEach((buttonRemoveElement) => {
+        buttonRemoveElement.addEventListener('click', (event) => {
+          const { key } = event.target.dataset;
+          this.update(key, 0);
+        });
+      });
       this.element.querySelectorAll('select').forEach((selectElement) => {
         selectElement.addEventListener('change', (event) => {
           const { key } = event.target.dataset;

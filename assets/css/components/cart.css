@@ -102,10 +102,19 @@
 .cart tfoot th {
   text-align: end;
 }
+.cart button[data-action="remove"]:where(:focus-visible, :hover) {
+  text-decoration: underline;
+}
 .cart .button-white {
   margin-inline-start: auto;
 }
 .cart-info {
   padding: var(--spacing-l);
   text-align: center;
+}
+.cart-quantity {
+  display: grid;
+  justify-items: start;
+  /* grid-auto-flow: row; */
+  row-gap: var(--spacing-s);
 }
