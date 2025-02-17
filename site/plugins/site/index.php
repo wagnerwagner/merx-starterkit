@@ -34,18 +34,6 @@ function checkStock(object $productPage, float $quantity)
 }
 
 Kirby::plugin('site/site', [
-    'api' => [
-        'data' => [
-            'cart' => require_once(__DIR__ . '/api/data/cart.php'),
-        ],
-        'routes' => [
-            require_once(__DIR__ . '/api/routes/cart.php'),
-            require_once(__DIR__ . '/api/routes/cart-post.php'),
-            require_once(__DIR__ . '/api/routes/cart-patch.php'),
-            require_once(__DIR__ . '/api/routes/client-secret.php'),
-            require_once(__DIR__ . '/api/routes/checkout-post.php'),
-        ],
-    ],
     'fieldMethods' => [
         'toIntlDate' => function (
             $field,
@@ -82,9 +70,6 @@ Kirby::plugin('site/site', [
     'siteMethods' => [
         'shippingPage' => function (): ?\Kirby\Cms\Page {
             return $this->children()->template('shipping')->first();
-        },
-        'checkoutPage' => function (): ?\Kirby\Cms\Page {
-            return $this->children()->template('checkout')->first();
         },
     ],
 ]);

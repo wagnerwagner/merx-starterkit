@@ -29,7 +29,7 @@
               data-image-width="<?= $variant->thumb()->toFile()->thumb('default')->width() ?>"
               data-image-height="<?= $variant->thumb()->toFile()->thumb('default')->height() ?>"
               data-image-alt="<?= $variant->thumb()->toFile()->alt() ?>"
-              data-price="<?= $variant->price()->toFormattedPrice() ?>"
+              data-price="<?= $variant->price()?->toString() ?>"
               data-stock-info="<?= $variant->stockInfo() ?>"
             >
               <?= $variant->variantName() ?>
@@ -38,7 +38,7 @@
         </select>
       </div>
       <div class="price">
-        <?= $page->defaultVariant()->price()->toFormattedPrice() ?>
+        <?= $page->defaultVariant()->price()?->toString() ?>
       </div>
       <div class="stack-s">
         <button

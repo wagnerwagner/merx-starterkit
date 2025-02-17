@@ -10,4 +10,4 @@ extends: ww.merx.sections/orders
 # So we can safely output these fields next to the invoiceNumber.
 text: "#{{ page.invoiceNumber }} – {{ page.name }}, {{ page.city }}"
 
-info: "{{ page.formattedSum }} | {{ page.invoiceDate.toIntlDate }}"
+info: "{{ page.total.toString }} | {{ page.invoiceDate.toIntlDate }}"

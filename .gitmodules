@@ -4,3 +4,9 @@
 [submodule "site/plugins/merx"]
 	path = site/plugins/merx
 	url = https://github.com/wagnerwagner/merx.git
+[submodule "site/plugins/kql"]
+	path = site/plugins/kql
+	url = https://github.com/getkirby/kql.git
+[submodule "site/plugins/kirbylog"]
+	path = site/plugins/kirbylog
+	url = https://github.com/johannschopplich/kirbylog

@@ -8,6 +8,6 @@ return function (OrderPage $page) {
 
     return [
         'paymentMethod' => t('paymentMethod.' . $paymentMethod . '.label'),
-        'sum' => formatPrice($cart->getSum()),
+        'total' => $cart->total()->toString(),
     ];
 };

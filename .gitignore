@@ -63,6 +63,13 @@ Icon
 !/site/sessions/index.html
 
 
+# Logs
+# ---------------
+
+/site/logs/*
+!/site/logs/index.html
+
+
 # License
 # ---------------
 

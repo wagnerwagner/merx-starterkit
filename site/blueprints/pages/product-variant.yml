@@ -17,17 +17,21 @@ image:
   query: page.thumb.toFile
   cover: true
 
-fields:
-  variantName:
-    label:
-      en: Variant Name
-      de: Variantenname
-    type: text
-    required: true
-  extends: fields/product-standards
-  thumb:
-    type: files
-    multiple: false
-    layout: cards
-    query: page.images
-    require: true
+tabs:
+  content:
+    fields:
+      variantName:
+        label:
+          en: Variant Name
+          de: Variantenname
+        type: text
+        required: true
+      extends: fields/product-standards
+      thumb:
+        type: files
+        multiple: false
+        layout: cards
+        query: page.images
+        require: true
+  orders:
+    extends: ww.merx.tabs/orders

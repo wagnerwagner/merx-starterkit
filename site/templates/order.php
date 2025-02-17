@@ -9,7 +9,7 @@
  *
  * @var OrderPage $page
  * @var string $paymentMethod
- * @var string $sum
+ * @var string $total
  */
 ?>
 <?php snippet('head') ?>
@@ -42,30 +42,32 @@
         <p><?= tt('order.payment.text', compact('paymentMethod')) ?></p>
         <?php if ($page->paymentComplete()->toBool() === true): ?>
           <p><?= tt('order.payment.text.paid.date', ['datetime' => $page->paidDate()->toIntlDate()]) ?></p>
-          <?php if ($page->paymentMethod()->toString() === 'prepayment' && $page->paymentComplete()->toBool() === false): ?>
-            <p>
-              <?= t('order.payment.text.not-yet-paid') ?><br>
-              <?= tt('order.payment.text.invoice', compact('sum')) ?>
-            </p>
-            <table class="table">
-              <tr>
-                <th><?= t('order.invoice.recipient') ?></th>
-                <td><?= $site->title() ?></td>
-              </tr>
-              <tr>
-                <th><?= t('order.invoice.iban') ?></th>
-                <td><?= formatIBAN('DE0000000000000000') ?></td>
-              </tr>
-              <tr>
-                <th><?= t('order.invoice.sum') ?></th>
-                <td><?= $sum ?></td>
-              </tr>
-              <tr>
-                <th><?= t('order.invoice.purpose') ?></th>
-                <td><?= $page->title() ?></td>
-              </tr>
-            </table>
-          <?php endif; ?>
+        <?php endif; ?>
+        <?php if ($page->paymentMethod()->toString() === 'prepayment' && $page->paymentComplete()->toBool() === false): ?>
+          <p>
+            <?= t('order.payment.text.not-yet-paid') ?><br>
+            <?= tt('order.payment.text.invoice', [
+              'amount' => $total,
+            ]) ?>
+          </p>
+          <table class="table">
+            <tr>
+              <th><?= t('order.invoice.recipient') ?></th>
+              <td><?= $site->title() ?></td>
+            </tr>
+            <tr>
+              <th><?= t('order.invoice.iban') ?></th>
+              <td><?= formatIBAN('DE0000000000000000') ?></td>
+            </tr>
+            <tr>
+              <th><?= t('order.invoice.total') ?></th>
+              <td><?= $total ?></td>
+            </tr>
+            <tr>
+              <th><?= t('order.invoice.purpose') ?></th>
+              <td><?= $page->title() ?></td>
+            </tr>
+          </table>
         <?php endif; ?>
       </div>
       <div class="text" data-width="1/2">

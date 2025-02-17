@@ -8,7 +8,7 @@
  * @author Tobias Wolf
  */
 
-class ProductVariantPage extends Kirby\Cms\Page
+class ProductVariantPage extends \Wagnerwagner\Merx\ProductPage
 {
     /**
      * Overwrites title method to get a auto generated
@@ -36,12 +36,12 @@ class ProductVariantPage extends Kirby\Cms\Page
         return $this->site()->maxAmount()->toFloat();
     }
 
-    public function tax(): float
+    public function taxRate(): float
     {
         if ($this->content()->tax()->isEmpty()) {
             return 0;
         }
-        return $this->kirby()->option('taxRates')[$this->content()->tax()->toString()];
+        return $this->kirby()->option('taxRates')[$this->content()->tax()->toString()] / 100;
     }
 
 

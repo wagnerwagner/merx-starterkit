@@ -1,6 +1,6 @@
 <?php
 
-class ProductPage extends Page
+class ProductPage extends Wagnerwagner\Merx\ProductPage
 {
     public function maxAmount(): float
     {
@@ -10,18 +10,18 @@ class ProductPage extends Page
         return $this->site()->maxAmount()->toFloat();
     }
 
-    public function tax(): float
+    public function taxRate(): float
     {
         if ($this->content()->tax()->isEmpty()) {
             return 0;
         }
-        return $this->kirby()->option('taxRates')[$this->content()->tax()->toString()];
+        return $this->kirby()->option('taxRates')[$this->content()->tax()->toString()] / 100;
     }
 
     public function stockInfo(): ?string
     {
         $stockInfo = null;
-        $stock = $this->stock()->exists() ? $this->stock()->toInt() : null;
+        $stock = $this->stock()->isNotEmpty() ? $this->stock()->toInt() : null;
         $productTitle = $this->title();
         if ($stock !== null) {
             if ($stock === 0) {

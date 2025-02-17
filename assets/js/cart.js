@@ -24,7 +24,7 @@ class Cart {
       'cart.quantity-in-cart': 'in cart',
       'cart.change-quantity': 'Change quantity',
       'cart.price': 'Price',
-      'cart.sum': 'Sum',
+      'cart.total': 'Total',
       'cart.shipping': 'Shipping',
       'cart.product': 'Product',
       'cart.free-shipping': 'free',
@@ -41,7 +41,7 @@ class Cart {
         'cart.quantity-in-cart': 'im Warenkorb',
         'cart.change-quantity': 'Anzahl ändern',
         'cart.price': 'Preis',
-        'cart.sum': 'Summe',
+        'cart.total': 'Summe',
         'cart.shipping': 'Versand',
         'cart.product': 'Produkt',
         'cart.free-shipping': 'kostenlos',
@@ -77,6 +77,7 @@ class Cart {
       headers: {
         'Content-Type': 'application/json',
         'x-language': lang,
+        'x-currency': lang === 'de' ? 'EUR' : 'USD',
       },
       body: method !== 'GET' ? JSON.stringify(data) : null,
     })
@@ -110,7 +111,8 @@ class Cart {
     function createQuantitySelect(item) {
       const ariaLabel = `${item.quantity} ${i18n['cart.quantity-in-cart']}. ${i18n['cart.change-quantity']}.`;
       let html = `<select data-key="${item.key}" aria-label="${ariaLabel}">`;
-      for (let i = 0; i <= item.maxAmount; i += 1) {
+      const maxAmount = item.data?.maxAmount ?? item.quantity;
+      for (let i = 0; i <= maxAmount; i += 1) {
         html += `
           <option ${i === item.quantity ? 'selected' : ''}>
             ${i}
@@ -126,7 +128,9 @@ class Cart {
         <tr>
           <th>
             <a href="${item.url}">
-              <img src="${item.thumb?.url}" alt="${item.thumb?.alt}" width="46" height="46">
+              ${item.thumb ? `
+                <img src="${item.thumb?.src}" srcset="${item.thumb?.srcset}" alt="${item.thumb?.alt}" width="46" height="46">
+              ` : ''}
               <strong>${item.title}</strong>
               ${item.variant ? `<small>${item.variant}</small>` : ''}
             </a>
@@ -137,8 +141,8 @@ class Cart {
               <button class="text-s color-gray-500" data-action="remove" data-key="${item.key}">${i18n['cart.item.remove']}</button>
             </span>
           </td>
-          <td>${item.price}</td>
-          <td>${item.sum}</td>
+          <td>${item.price?.price}</td>
+          <td>${item.total?.price}</td>
         </tr>
       `;
     }
@@ -156,8 +160,8 @@ class Cart {
       taxRates.forEach((taxRate) => {
         html += `
           <tr class="text-s color-gray-500">
-            <th colspan="3">${i18n['cart.included-vat']} (${taxRate.taxRate} %)</th>
-            <td>${taxRate.sum}</td>
+            <th colspan="3">${i18n['cart.included-vat']} (${taxRate.rate})</th>
+            <td>${taxRate.price}</td>
           </tr>
         `;
       });
@@ -176,31 +180,31 @@ class Cart {
               <th>${i18n['cart.product']}</th>
               <td>${i18n['cart.quantity']}</td>
               <td>${i18n['cart.price']}</td>
-              <td>${i18n['cart.sum']}</td>
+              <td>${i18n['cart.total']}</td>
             </tr>
           </thead>
           <tbody>
-            ${createCartItems(data.items)}
+            ${createCartItems(data.products.items)}
           </tbody>
           <tfoot>
             <tr>
               <th colspan="3">${i18n['cart.shipping']}</th>
-              <td>${data.shipping === null ? i18n['cart.free-shipping'] : data.shipping}</td>
+              <td>${data.shippings === null ? i18n['cart.free-shipping'] : data.shippings.total.price}</td>
             </tr>
             <tr>
-              <th colspan="3">${i18n['cart.sum']}</th>
-              <td>${data.sum}</td>
+              <th colspan="3">${i18n['cart.total']}</th>
+              <td>${data.total?.price}</td>
             </tr>
             ${createTaxRates(data.taxRates)}
           </tfoot>
         </table>
-        ${(this.element.dataset.variant !== 'checkout') ? `<a href="${data.checkoutUrl}" class="button-white">${i18n['cart.to-checkout']}</a>` : ''}
+        ${(this.element.dataset.variant !== 'checkout') ? `<a href="${data.checkout.url}" class="button-white">${i18n['cart.to-checkout']}</a>` : ''}
       `;
 
       this.element.querySelectorAll('button[data-action="remove"]').forEach((buttonRemoveElement) => {
         buttonRemoveElement.addEventListener('click', (event) => {
           const { key } = event.target.dataset;
-          this.update(key, 0);
+          this.remove(key);
         });
       });
       this.element.querySelectorAll('select').forEach((selectElement) => {
@@ -213,21 +217,31 @@ class Cart {
     }
   }
 
-  add(id, quantity = 1) {
+  add(key, quantity = 1, currency) {
     this.element.classList.add('-loading');
     return this.request('cart', 'POST', {
-      id,
+      key,
       quantity,
+      currency,
     }).finally(() => {
       this.cartDetailsElement?.setAttribute('open', '');
       this.element.classList.remove('-loading');
     });
   }
 
-  update(id, quantity = 1) {
+  remove(key) {
+    this.element.classList.add('-loading');
+    return this.request('cart', 'DELETE', {
+      key,
+    }).finally(() => {
+      this.element.classList.remove('-loading');
+    });
+  }
+
+  update(key, quantity = 1) {
     this.element.classList.add('-loading');
     return this.request('cart', 'PATCH', {
-      id,
+      key,
       quantity,
     }).finally(() => {
       this.element.classList.remove('-loading');

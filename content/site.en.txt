@@ -2,7 +2,7 @@ Title: Merx Starterkit Shop
 
 ----
 
-Freeshipping: 40
+Freeshipping: 200
 
 ----
 

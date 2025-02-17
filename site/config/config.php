@@ -1,12 +1,31 @@
 <?php
 
+use Kirby\Exception\Exception;
+use Wagnerwagner\Merx\Cart;
+use Wagnerwagner\Merx\Merx;
+
 return [
+    'kql' => [
+        'auth' => false,
+    ],
+
     'languages' => true,
     'thumbs' => [
         'quality' => 80,
         'presets' => [
             'default' => ['width' => 704],
             'thumb' => ['width' => 46, 'height' => 46, 'crop' => true],
+        ],
+        'srcsets' => [
+            'default' => [
+                '352w' => ['width' => 352],
+                '704w' => ['width' => 704],
+                '1408w' => ['width' => 1408],
+            ],
+            'thumb' => [
+                '46w' => ['width' => 46, 'height' => 46, 'crop' => true],
+                '92w' => ['width' => 92, 'height' => 92, 'crop' => true],
+            ],
         ],
     ],
 
@@ -20,6 +39,15 @@ return [
     'taxRates' => [
         'reduced' => 7,
         'default' => 19,
+    ],
+
+    /**
+     * @todo documentation
+     */
+    'ww.merx.currencies' => [
+        'EUR',
+        'USD',
+        'GBP',
     ],
 
     /**
@@ -42,7 +70,7 @@ return [
     'ww.merx.paypal.live.secret' => '',
 
     'ww.merx.production' => false,
-    'ww.merx.license' => 'MERX-XXXXXXXX-XXXXXXXX',
+    // 'ww.merx.license' => 'MERX-XXXXXXXX-XXXXXXXX',
 
     /**
      * A custom payment gateway (payment method). For the prepayment gateway no additional action is required.
@@ -54,6 +82,23 @@ return [
     ],
 
     'hooks' => [
+        'system.exception' => function (Throwable $exception) {
+            try {
+                if (option('debug') !== true) {
+                    if (method_exists($exception, 'toArray')) {
+                        kirbylog($exception->toArray(), 'error');
+                    } else {
+                        // Ensure we get basic exception details even if toArray isn't available
+                        kirbylog([
+                            'message' => $exception->getMessage(),
+                            'code' => $exception->getCode(),
+                            'file' => $exception->getFile(),
+                            'line' => $exception->getLine()
+                        ], 'error');
+                    }
+                }
+            } catch (Throwable) {}
+        },
         'page.create:after' => function ($page) {
             /**
              * Product variant pages have a generated title.
@@ -89,6 +134,11 @@ return [
                 }
             }
         },
+        'page.render:before' => function (Kirby\Cms\Page $page) {
+            if ($page->kirby()->language()->code() === 'en') {
+                Merx::setCurrency('USD');
+            }
+        },
         'route:after' => function () {
             /**
              * Sets strict Content Security Policy (CSP) and other security related headers for non-panel URLs
@@ -99,18 +149,21 @@ return [
                 // header('Content-Security-Policy: default-src \'none\'; script-src \'self\' https://js.stripe.com; connect-src \'self\'; img-src \'self\'; style-src \'self\'; base-uri \'self\'; form-action \'self\'; child-src https://js.stripe.com');
             }
         },
-        'ww.merx.cart' => function ($cart) {
+        'ww.merx.cart' => function (Cart $cart) {
             /**
              * Update shipping
              * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts
              */
             $site = site();
             if ($site->shippingPage()) {
-                $shippingId = $site->shippingPage()->id();
+                $shippingId = $site->shippingPage()->uuid();
                 $freeShipping = $site->shippingPage()->freeShipping()->or('0')->toFloat();
                 $cart->remove($shippingId);
-                if ($cart->count() > 0 && $cart->getSum() < $freeShipping) {
-                    $cart->add($shippingId);
+                if ($cart->count() > 0 && $cart->total()?->toFloat() < $freeShipping) {
+                    $cart->add([
+                        'key' => $shippingId,
+                        'type' => 'shipping',
+                    ]);
                 }
             }
         },

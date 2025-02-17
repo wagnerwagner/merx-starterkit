@@ -2,7 +2,14 @@ Title: Shipping
 
 ----
 
-Price: 5.99
+Prices:
+
+- 
+  price: 6
+  currency: EUR
+- 
+  price: 6.3
+  currency: USD
 
 ----
 
@@ -14,4 +21,12 @@ Freeshipping: 40
 
 ----
 
+Price: 5.99
+
+----
+
 Stock: 
+
+----
+
+Uuid: xybcqtf234pf1oyf

@@ -1,5 +1,7 @@
 <?php
 
+use Wagnerwagner\Merx\Price;
+
 /**
  * Page model of products with several
  * product variants (e.g. Coffee Cup with
@@ -27,7 +29,7 @@ class ProductVariantsPage extends Page
     /**
      * Returns all product variants
      *
-     * @return \Kirby\Cms\Pages
+     * @return \Kirby\Cms\Pages<\Wagnerwagner\Merx\ProductPage>
      */
     public function variants(): \Kirby\Cms\Pages
     {
@@ -45,7 +47,7 @@ class ProductVariantsPage extends Page
         return $this->content()->defaultVariant()->toPage();
     }
 
-    public function price(): ?\Field
+    public function price(): ?Price
     {
         if ($this->defaultVariant()) {
             return $this->defaultVariant()->price();

@@ -2,7 +2,14 @@ Title: Sofa
 
 ----
 
-Price: 2800
+Prices:
+
+-
+  price: 2800
+  currency: EUR
+-
+  price: 2950
+  currency: USD
 
 ----
 

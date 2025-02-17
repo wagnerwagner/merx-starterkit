@@ -18,6 +18,7 @@ options:
   changeTitle: false
   delete: false
   duplicate: false
+  move: false
 
 # This page blueprint extends the order layout provided by Merx
 # The layout provides the “Overview” and the “Payment” tab.

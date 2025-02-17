@@ -7,7 +7,7 @@
  * @author Tobias Wolf
  */
 
-class OrderPage extends OrderPageAbstract
+class OrderPage extends \Wagnerwagner\Merx\OrderPage
 {
     public function title(): Field
     {

@@ -6,7 +6,7 @@ class Product {
     this.buttonAddToCart?.addEventListener('click', async (event) => {
       event.stopPropagation();
       event.target.classList.add('-loading');
-      await window.cart.add(element.dataset.id);
+      await window.cart.add(element.dataset.id, 1, element.dataset.currency);
       window.cart.element.setAttribute('open', '');
       window.cart.element.scrollIntoView({
         behavior: 'smooth',

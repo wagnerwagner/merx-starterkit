@@ -59,3 +59,7 @@ SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
   AddOutputFilterByType DEFLATE application/javascript
   AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
+
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "https://kql.getkirby.local"
+</IfModule>
