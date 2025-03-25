@@ -1,6 +1,6 @@
 # Merx Starterkit
 
-**[Merx](https://merx.wagnerwagner.de) is a plugin to create online shops with Kirby 3.**  
+**[Merx](https://merx.wagnerwagner.de) is a plugin to create online shops with Kirby 3 and Kirby 4.**  
 
 This Starterkit is a complete online shop with commented blueprints, templates and JavaScript code.  
 It is ideal for new users to explore many of Merx’s possibilities.
