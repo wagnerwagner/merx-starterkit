@@ -1,5 +1,6 @@
 <?php
 
+use Kirby\Cms\Event;
 use Kirby\Exception\Exception;
 use Wagnerwagner\Merx\Cart;
 use Wagnerwagner\Merx\Merx;
@@ -149,20 +150,29 @@ return [
                 // header('Content-Security-Policy: default-src \'none\'; script-src \'self\' https://js.stripe.com; connect-src \'self\'; img-src \'self\'; style-src \'self\'; base-uri \'self\'; form-action \'self\'; child-src https://js.stripe.com');
             }
         },
-        'ww.merx.cart' => function (Cart $cart) {
+        'ww.merx.cart.*:after' => function (Event $event, Cart $cart, $key = null) {
             /**
              * Update shipping
              * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts
              */
+
+
             $site = site();
-            if ($site->shippingPage()) {
-                $shippingId = $site->shippingPage()->uuid();
-                $freeShipping = $site->shippingPage()->freeShipping()->or('0')->toFloat();
-                $cart->remove($shippingId);
+            if ($shippingPage = $site->shippingPage()) {
+                $shippingId = (string)$shippingPage->uuid();
+
+                if ($event->name() === 'ww.merx.cart.remove:after' && $key === $shippingId) {
+                    // Avoid loop
+                    return;
+                }
+
+                $freeShipping = $shippingPage->freeShipping()->or('0')->toFloat();
+                $cart = $cart->remove($shippingId);
                 if ($cart->count() > 0 && $cart->total()?->toFloat() < $freeShipping) {
                     $cart->add([
                         'key' => $shippingId,
                         'type' => 'shipping',
+                        'currency' => $cart->currency(),
                     ]);
                 }
             }
