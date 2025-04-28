@@ -5,16 +5,6 @@
   <?php snippet('header') ?>
 
   <main>
-    <?php
-    /** @var \Wagnerwagner\Merx\Cart $cart */
-    $cart = cart();
-    cart()->add([
-      'key' => 'test',
-      'priceNet' => 14,
-      'tax' => 0.1,
-    ]);
-    dump($kirby->collection('prices')->toArray());
-    ?>
     <div class="product-grid">
       <?php foreach($products as $product): ?>
         <a href="<?= $product->url() ?>" class="product-grid-item">
