@@ -1,4 +1,8 @@
 <?php
+
+use Kirby\Cms\Html;
+use Kirby\Toolkit\I18n;
+
 /**
  * Yes/no toggle aka checkbox
  *

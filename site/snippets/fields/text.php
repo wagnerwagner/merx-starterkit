@@ -1,4 +1,8 @@
 <?php
+
+use Kirby\Cms\Html;
+use Kirby\Toolkit\I18n;
+
 /**
  * Snippet for standard, single-line input field.
  * Fallback for fields with no own snippet.

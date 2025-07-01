@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\Page;
+
 class ShippingPage extends Page
 {
     public function tax(): float

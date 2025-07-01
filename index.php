@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\App;
+
 require __DIR__ . '/kirby/bootstrap.php';
 
-echo (new Kirby())->render();
+echo (new App())->render();

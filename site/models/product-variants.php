@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\Page;
+
 /**
  * Page model of products with several
  * product variants (e.g. Coffee Cup with
@@ -16,7 +18,7 @@ class ProductVariantsPage extends Page
      *
      * @return \Kirby\Content\Field|null
      */
-    public function thumb(): ?\Field
+    public function thumb()
     {
         if ($this->defaultVariant()) {
             return $this->defaultVariant()->thumb();
@@ -45,7 +47,10 @@ class ProductVariantsPage extends Page
         return $this->content()->defaultVariant()->toPage();
     }
 
-    public function price(): ?\Field
+    /**
+     * @return \Kirby\Content\Field|null
+     */
+    public function price(): ?Field
     {
         if ($this->defaultVariant()) {
             return $this->defaultVariant()->price();

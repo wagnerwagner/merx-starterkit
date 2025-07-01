@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\Page;
+
 /**
  * ProductVariant pages are children
  * of a ProductVariants page.
@@ -8,14 +10,14 @@
  * @author Tobias Wolf
  */
 
-class ProductVariantPage extends Kirby\Cms\Page
+class ProductVariantPage extends Page
 {
     /**
      * Overwrites title method to get a auto generated
      * title with ProductVariants’ title and its own
      * variant name (e.g. “Coffee Cup, green“)
      *
-     * @return Field
+     * @return \Kirby\Content\Field
      */
     public function title(): Field
     {

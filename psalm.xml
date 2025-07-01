@@ -7,7 +7,6 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <file name=".intelephense-alias.php" />
         <directory name="site" />
         <ignoreFiles>
             <directory name="kirby" />
@@ -29,6 +28,7 @@
         <file name="site/plugins/merx/index.php" />
     </stubs>
     <issueHandlers>
+      <UndefinedMagicMethod errorLevel="info" />
       <!-- Don't warn about "$this in a non-class context" in the config dir -->
       <InvalidScope>
           <errorLevel type="suppress">
