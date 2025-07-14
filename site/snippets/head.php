@@ -1,3 +1,7 @@
+<?php
+
+use Kirby\Toolkit\I18n;
+?>
 <!doctype html>
 <html lang="<?= I18n::locale() ?>">
 <head>
