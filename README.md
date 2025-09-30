@@ -34,16 +34,3 @@ git submodule update
 ## License
 
 The Merx plugin is not free software. In order to run on a public server you must purchase a valid [Kirby license](https://getkirby.com/buy) **and** a valid [Merx license](https://merx.wagnerwagner.de/buy).
-
-
-
-## Local development
-
-
-### Init
-`composer install`
-`npm install`
-
-### Server
-`php -S localhost:8080`
-`pkill -f "php -S localhost:8000"`
