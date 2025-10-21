@@ -9,8 +9,8 @@ return [
   ],
   'name' => 'Deutsch',
   'translations' => [
-    'taxRule.default' => 'Ermäßigt',
-    'taxRule.reduced' => 'Standard',
+    'taxRule.default' => 'Standard',
+    'taxRule.reduced' => 'Ermäßigt',
     'cart.change-quantity' => 'Anzahl ändern',
     'cart.continue-shopping' => 'Weiter einkaufen',
     'cart.empty' => 'Der Warenkorb ist leer.',
