@@ -6,7 +6,7 @@ Prices:
 
 - 
   price: 250
-  pricingkey: de
+  pricingrule: default
 
 ----
 
@@ -30,7 +30,7 @@ Price: 250
 
 ----
 
-Tax: default
+Taxrule: default
 
 ----
 

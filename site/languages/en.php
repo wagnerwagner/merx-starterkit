@@ -4,10 +4,8 @@ return [
   'code' => 'en',
   'default' => true,
   'direction' => 'ltr',
-  'locale' => [
-    'LC_ALL' => 'en_US.utf-8'
-  ],
-  'name' => 'English',
+  'locale' => 'en_GB',
+  'name' => 'International',
   'translations' => [
     'taxRule.default' => 'Default',
     'taxRule.reduced' => 'Reduced',
@@ -47,7 +45,7 @@ return [
     'order.shipping.shipped' => 'Your order has been shipped.',
     'order.shipping.text' => 'Your order will be shipped in the next few days.',
     'order.shipping' => 'Shipping',
-    'paymentMethod.creditCardSca.label' => 'Credit Card',
+    'paymentMethod.creditCard.label' => 'Credit Card',
     'paymentMethod.ideal.label' => 'iDeal',
     'paymentMethod.ideal.submitText' => 'Continue to iDeal',
     'paymentMethod.klarna.label' => 'Klarna',
@@ -59,6 +57,7 @@ return [
     'product.add-to-cart' => 'Add to cart',
     'product.amount' => 'Amount',
     'product.color' => 'Color',
+    'product.tax-free' => 'Tax free',
     'product.excluding-tax' => 'Exluding {tax} VAT',
     'product.gross-price' => 'Gross price: {price}',
     'product.including-shipping' => 'Plus <a href="{url}">shipping costs</a>',
@@ -67,6 +66,7 @@ return [
     'product.stock.info.1' => 'Only one product left',
     'product.stock.info' => 'Only {stock} available',
     'product.stock.sold-out' => 'Currently not available',
+    'product.unavailable' => 'This product is not available in your region ({region})',
     'stock.not-available.1' => 'There are only one item left of “{productTitle}”.',
     'stock.not-available.count' => 'There are only {availableStock} items left of “{productTitle}”.',
     'stock.not-available' => '“{productTitle}” is no longer available.',

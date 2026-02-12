@@ -29,14 +29,8 @@
 				<button type="submit" class="button">Buy</button>
 			</div>
 		</form>
-		<?php if (option('debug') === true && option('ww.merx.production')	=== false): ?>
-			<?php
-			$paypalPublishableKey = option('ww.merx.production') === true ? option('ww.merx.paypal.live.clientID') : option('ww.merx.paypal.sandbox.clientID');
-			$stripePublishableKey = option('ww.merx.production') === true ? option('ww.merx.stripe.live.publishable_key') : option('ww.merx.stripe.test.publishable_key');
-			?>
-
+		<?php if (option('debug') === true && option('wagnerwagner.merx.production')	=== false): ?>
 			<?php snippet('checkout-info') ?>
-
 			</div>
 		<?php endif; ?>
 	</main>

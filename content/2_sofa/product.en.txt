@@ -5,13 +5,13 @@ Title: Sofa
 Prices:
 
 - 
-  price: 2800
-  pricingkey: en
-  currency: EUR
-- 
   price: 2950
-  pricingkey: de
+  pricingrule: default
   currency: USD
+- 
+  price: 2800
+  pricingrule: en
+  currency: EUR
 
 ----
 
@@ -31,7 +31,7 @@ Thumb: - file://LPEe98pYBj5iMOXo
 
 ----
 
-Tax: default
+Taxrule: default
 
 ----
 

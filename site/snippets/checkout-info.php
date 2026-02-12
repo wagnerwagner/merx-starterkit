@@ -1,7 +1,7 @@
-<?php if (option('debug') === true && option('ww.merx.production') === false): ?>
+<?php if (option('debug') === true && option('wagnerwagner.merx.production') === false): ?>
 	<?php
-	$paypalPublishableKey = option('ww.merx.production') === true ? option('ww.merx.paypal.live.clientID') : option('ww.merx.paypal.sandbox.clientID');
-	$stripePublishableKey = option('ww.merx.production') === true ? option('ww.merx.stripe.live.publishable_key') : option('ww.merx.stripe.test.publishable_key');
+	$paypalPublishableKey = option('wagnerwagner.merx.production') === true ? option('wagnerwagner.merx.paypal.live.clientID') : option('wagnerwagner.merx.paypal.sandbox.clientID');
+	$stripePublishableKey = option('wagnerwagner.merx.production') === true ? option('wagnerwagner.merx.stripe.live.publishable_key') : option('wagnerwagner.merx.stripe.test.publishable_key');
 ?>
 	<div class="notice text">
 		<h2>Testing Payment Methods</h2>

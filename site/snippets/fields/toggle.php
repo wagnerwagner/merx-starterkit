@@ -51,7 +51,7 @@ use Kirby\Toolkit\I18n;
       'type' => 'checkbox',
       'name' => $field['name'],
       'id' => $field['name'],
-      'checked' => $field['default'],
+      'checked' => $field['default'] ?? null,
       'value' => 'true',
     ]) ?>
   >

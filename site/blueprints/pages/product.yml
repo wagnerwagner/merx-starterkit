@@ -24,4 +24,4 @@ tabs:
         width: 1/3
         translate: false
   orders:
-    extends: ww.merx.tabs/orders
+    extends: wagnerwagner.merx.tabs/orders

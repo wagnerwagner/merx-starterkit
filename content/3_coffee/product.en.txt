@@ -6,11 +6,11 @@ Prices:
 
 - 
   price: 5.99
-  pricingkey: de
+  pricingrule: default
   currency: EUR
 - 
   price: 6.29
-  pricingkey: en
+  pricingrule: en
   currency: USD
 
 ----
@@ -31,7 +31,7 @@ Thumb: - file://qUTWssWkM77FfWxC
 
 ----
 
-Tax: reduced
+Taxrule: reduced
 
 ----
 

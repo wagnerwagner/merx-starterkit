@@ -7,6 +7,3 @@
 [submodule "site/plugins/kql"]
 	path = site/plugins/kql
 	url = https://github.com/getkirby/kql.git
-[submodule "site/plugins/kirbylog"]
-	path = site/plugins/kirbylog
-	url = https://github.com/johannschopplich/kirbylog

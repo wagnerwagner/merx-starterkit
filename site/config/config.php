@@ -4,6 +4,7 @@ use Kirby\Cms\App;
 use Kirby\Cms\Event;
 use Kirby\Toolkit\Str;
 use Wagnerwagner\Merx\Cart;
+use Wagnerwagner\Merx\Logger;
 
 return [
 	'kql' => [
@@ -37,14 +38,23 @@ return [
 	 * /site/models/product.php
 	 * /site/models/product-variant.php
 	 */
-	'ww.merx.taxRules' => [
+	'wagnerwagner.merx.taxRules' => [
 		'default' => [
 			'name' => fn (): string => t('taxRule.default'),
-			'rule' => fn (?App $kirby): float => $kirby->languageCode() === 'de' ? 19 : 20,
+			'rule' => fn (?App $kirby): float => $kirby->languageCode() === 'de' ? 0.19 : 0.20,
 		],
 		'reduced' => [
 			'name' => fn (): string => t('taxRule.reduced'),
-			'rule' => fn (?App $kirby): float => $kirby->languageCode() === 'de' ? 7 : 5.5,
+			'rule' => function (?App $kirby): ?float {
+				switch ($kirby->languageCode()) {
+					case 'de':
+						return 0.07;
+					case 'us':
+						return 0.055;
+					default:
+						return null;
+				}
+			},
 		],
 	],
 
@@ -52,17 +62,17 @@ return [
 	 * Key value pair for pricing key and the matching currency.
 	 * Used to return prices with correct currency.
 	 */
-	'ww.merx.pricingRules' => [
-		'de' => [
-			'name' => 'de (EUR)',
+	'wagnerwagner.merx.pricingRules' => [
+		'default' => [
+			'name' => 'EUR',
 			'currency' => 'EUR',
-			'rule' => fn (?App $kirby): bool => $kirby->languageCode() === 'de',
+			'rule' => fn (?App $kirby): bool => $kirby->languageCode() !== 'us',
 			'taxIncluded' => true,
 		],
 		'en' => [
-			'name' => 'en (USD)',
+			'name' => 'USD',
 			'currency' => 'USD',
-			'rule' => fn (?App $kirby): bool => $kirby->languageCode() === 'en',
+			'rule' => fn (?App $kirby): bool => $kirby->languageCode() === 'us',
 			'taxIncluded' => false,
 		],
 	],
@@ -76,26 +86,26 @@ return [
 	 * config file (config.starterkit.merx.wagnerwagner.de.php) the its secret keys.
 	 * More information: https://getkirby.com/docs/guide/configuration#multi-environment-setup
 	 */
-	'ww.merx.stripe.test.publishable_key' => '',
-	'ww.merx.stripe.test.secret_key' => '',
-	'ww.merx.paypal.sandbox.clientID' => '',
-	'ww.merx.paypal.sandbox.secret' => '',
+	'wagnerwagner.merx.stripe.test.publishable_key' => '',
+	'wagnerwagner.merx.stripe.test.secret_key' => '',
+	'wagnerwagner.merx.paypal.sandbox.clientID' => '',
+	'wagnerwagner.merx.paypal.sandbox.secret' => '',
 
-	'ww.merx.stripe.live.publishable_key' => '',
-	'ww.merx.stripe.live.secret_key' => '',
-	'ww.merx.paypal.live.clientID' => '',
-	'ww.merx.paypal.live.secret' => '',
+	'wagnerwagner.merx.stripe.live.publishable_key' => '',
+	'wagnerwagner.merx.stripe.live.secret_key' => '',
+	'wagnerwagner.merx.paypal.live.clientID' => '',
+	'wagnerwagner.merx.paypal.live.secret' => '',
 
-	'ww.merx.production' => false,
-	// 'ww.merx.license' => 'MERX-XXXXXXXX-XXXXXXXX',
+	'wagnerwagner.merx.production' => false,
+	// 'wagnerwagner.merx.license' => 'MERX-XXXXXXXX-XXXXXXXX',
 
-	/**
-	 * A custom payment gateway (payment method). For the prepayment gateway no additional action is required.
-	 * The user will directly be redirected to the order page.
-	 * https://merx.wagnerwagner.de/docs/options#gateways
-	 */
-	'ww.merx.gateways' => [
-		'prepayment' => [],
+	'wagnerwagner.merx.stripe.paymentIntentParameters' => [
+		'payment_method_types' => ['card', 'ideal', 'sepa_debit', 'klarna'],
+		'automatic_payment_methods' => ['enabled' => false],
+		'capture_method' => 'automatic_async',
+		'payment_method_options' => [
+			'card' => ['capture_method' => 'manual'],
+		],
 	],
 
 	'hooks' => [
@@ -103,10 +113,10 @@ return [
 			try {
 				if (option('debug') !== true) {
 					if (method_exists($exception, 'toArray')) {
-						kirbylog($exception->toArray(), 'error');
+						Logger::log($exception->toArray(), 'error');
 					} else {
 						// Ensure we get basic exception details even if toArray isn't available
-						kirbylog([
+						Logger::log([
 							'message' => $exception->getMessage(),
 							'code' => $exception->getCode(),
 							'file' => $exception->getFile(),
@@ -130,22 +140,21 @@ return [
 				]);
 			}
 		},
-		'page.update:after' => function ($newPage, $oldPage) {
+		'page.update:after' => function (\Kirby\Cms\Page $newPage, \Kirby\Cms\Page $oldPage) {
 			if ($newPage->intendedTemplate()->name() === 'order' && $newPage->isListed()) {
 				/**
-				 * For the “prepayment” payment method the paidDate is not set automatically after
+				 * For the “prepayment” payment method the datePaid is not set automatically after
 				 * the user completes the checkout (as in contrast to e.g. PayPal or credit card payment).
 				 * This hook sets the paid date when paymentComplete field switches form false to true.
 				 */
 				if ($newPage->paymentComplete()->toBool() !== $oldPage->paymentComplete()->toBool()) {
 					if ($newPage->paymentComplete()->isTrue()) {
-						kirby()->impersonate('kirby');
-						$newPage = $newPage->update([
-							'paidDate' => date('c'),
+						$newPage->update([
+							'datePaid' => date('c'),
 						]);
 					} else {
 						$newPage->update([
-							'paidDate' => '',
+							'datePaid' => '',
 						]);
 					}
 				}
@@ -161,7 +170,7 @@ return [
 				// header('Content-Security-Policy: default-src \'none\'; script-src \'self\' https://js.stripe.com; connect-src \'self\'; img-src \'self\'; style-src \'self\'; base-uri \'self\'; form-action \'self\'; child-src https://js.stripe.com');
 			}
 		},
-		'ww.merx.cart.*:after' => function (Event $event, Cart $cart, $key = null) {
+		'wagnerwagner.merx.cart.*:after' => function (Event $event, Cart $cart, $key = null) {
 			/**
 			 * Update shipping
 			 * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts
@@ -171,7 +180,7 @@ return [
 			if ($shippingPage = $site->shippingPage()) {
 				$shippingId = (string)$shippingPage->uuid();
 
-				if ($event->name() === 'ww.merx.cart.remove:after' && $key === $shippingId) {
+				if ($event->name() === 'wagnerwagner.merx.cart.remove:after' && $key === $shippingId) {
 					// Avoid loop
 					return;
 				}
@@ -186,7 +195,7 @@ return [
 				}
 			}
 		},
-		'ww.merx.completePayment:after' => function (OrderPage $orderPage) {
+		'wagnerwagner.merx.completePayment:after' => function (OrderPage $orderPage) {
 			/**
 			 * Update stock
 			 * https://merx.wagnerwagner.de/cookbooks/stock-management

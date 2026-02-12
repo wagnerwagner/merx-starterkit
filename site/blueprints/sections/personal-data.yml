@@ -84,7 +84,7 @@ fields:
       de: Versand
     numbered: false
   billingAddressIsShippingAddress:
-    default: true
+    default: 'true'
     label:
       en: Use billing address as shipping address
       de: Rechungsadresse als Versandadresse verwenden

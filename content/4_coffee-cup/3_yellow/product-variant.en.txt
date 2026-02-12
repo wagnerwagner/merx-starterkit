@@ -6,10 +6,10 @@ Prices:
 
 - 
   price: 10
-  pricingkey: de
+  pricingrule: default
 - 
   price: 9
-  pricingkey: en
+  pricingrule: en
 
 ----
 
@@ -29,7 +29,7 @@ Price: 15
 
 ----
 
-Tax: default
+Taxrule: default
 
 ----
 

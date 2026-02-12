@@ -2,18 +2,18 @@
 
 use Kirby\Cms\Html;
 
-$stripePublishableKey = option('ww.merx.production') === true ? option('ww.merx.stripe.live.publishable_key') : option('ww.merx.stripe.test.publishable_key');
-$paypalPublishableKey = option('ww.merx.production') === true ? option('ww.merx.paypal.live.clientID') : option('ww.merx.paypal.sandbox.clientID');
+$stripePublishableKey = option('wagnerwagner.merx.production') === true ? option('wagnerwagner.merx.stripe.live.publishable_key') : option('wagnerwagner.merx.stripe.test.publishable_key');
+$paypalPublishableKey = option('wagnerwagner.merx.production') === true ? option('wagnerwagner.merx.paypal.live.clientID') : option('wagnerwagner.merx.paypal.sandbox.clientID');
 ?>
 <div class="payment-methods grid" data-width="1/1">
-	<h2 data-width="1/1"><?= t('field.paymentMethod') ?></h2>
+	<h2 data-width="1/1"><?= t('field.paymentGateway') ?></h2>
 
 	<?php foreach(collection('payment-methods') as $paymentMethod): ?>
 		<?php
 			$fieldDisabled = false;
 			if (
-				($paymentMethod['paymentProvider'] === 'stripe' && empty($stripePublishableKey))
-				|| ($paymentMethod['paymentProvider'] === 'paypal' && empty($paypalPublishableKey))
+				($paymentMethod['paymentGateway'] === 'stripe' && empty($stripePublishableKey))
+				|| ($paymentMethod['paymentGateway'] === 'paypal' && empty($paypalPublishableKey))
 			) {
 				$fieldDisabled = true;
 			}
@@ -27,6 +27,7 @@ $paypalPublishableKey = option('ww.merx.production') === true ? option('ww.merx.
 						'value' => $paymentMethod['value'],
 						'disabled' => $fieldDisabled,
 						'required' => true,
+						'data-gateway' => $paymentMethod['paymentGateway'],
 						'data-submit-text' => $paymentMethod['submitText'] ?? null,
 					]) ?>
 				>
@@ -37,11 +38,19 @@ $paypalPublishableKey = option('ww.merx.production') === true ? option('ww.merx.
 	<?php endforeach; ?>
 
 	<?php if (!empty($stripePublishableKey) && collection('payment-methods')->has('credit-card')): ?>
-		<div class="field" data-width="1/1" data-payment-method="credit-card" hidden>
+		<div class="field" data-width="1/1" data-payment-method="card" hidden>
 			<label for="">
 				<?= t('paymentMethod.creditCard.label') ?>
 			</label>
 			<div id="stripe-card"></div>
+		</div>
+	<?php endif; ?>
+	<?php if (!empty($stripePublishableKey) && collection('payment-methods')->has('ideal')): ?>
+		<div class="field" data-width="1/1" data-payment-method="ideal" hidden>
+			<label for="">
+				<?= t('paymentMethod.ideal.label') ?>
+			</label>
+			<div id="stripe-ideal"></div>
 		</div>
 	<?php endif; ?>
 	<?php if (!empty($stripePublishableKey) && collection('payment-methods')->has('sepa-debit')): ?>
@@ -54,7 +63,7 @@ $paypalPublishableKey = option('ww.merx.production') === true ? option('ww.merx.
 		</div>
 	<?php endif; ?>
 	<?php if (!empty($stripePublishableKey) && (collection('payment-methods')->has('credit-card') || collection('payment-methods')->has('sepa-debit') || collection('payment-methods')->has('sofort'))): ?>
-	<input type="hidden" name="stripePublishableKey" value="<?= $stripePublishableKey ?>">
-	<script src="https://js.stripe.com/v3/"></script>
+		<input type="hidden" name="stripePublishableKey" value="<?= $stripePublishableKey ?>">
+		<script src="https://js.stripe.com/v3/"></script>
 	<?php endif; ?>
 </div>

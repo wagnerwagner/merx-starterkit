@@ -1,7 +1,7 @@
 <?php
 /** @var ProductPage $page */
 
-// dump(option('ww.merx.taxRules'));
+// dump(option('wagnerwagner.merx.taxRules'));
 // die();
 ?>
 <?php snippet('head') ?>
@@ -25,15 +25,19 @@
 			<?php if ($page->price()): ?>
 				<div class="price">
 					<?= $page->price()?->toString() ?>
-					<small>
-						<?php if ($page->price()->taxIncluded()): ?>
-							<?= tt('product.including-tax', ['tax' => $page->tax()->toString('rate')]) ?> (<?= $page->tax()->toString() ?>)<br>
-							<?= tt('product.net-price', ['price' => $page->price()->toString('priceNet')]) ?>
-						<?php else: ?>
-							<?= tt('product.excluding-tax', ['tax' => $page->tax()->toString('rate')]) ?> (<?= $page->tax()->toString() ?>)<br>
-							<?= tt('product.gross-price', ['price' => $page->price()->toString('price')]) ?>
-						<?php endif ?>
-					</small>
+					<?php if ($page->tax() === null): ?>
+						<small><?= t('product.tax-free') ?></small>
+					<?php else: ?>
+						<small>
+							<?php if ($page->price()->taxIncluded()): ?>
+								<?= tt('product.including-tax', ['tax' => $page->tax()?->rate()]) ?> (<?= $page->tax()?->toString() ?>)<br>
+								<?= tt('product.net-price', ['price' => $page->price()->toString('priceNet')]) ?>
+							<?php else: ?>
+								<?= tt('product.excluding-tax', ['tax' => $page->tax()?->rate()]) ?> (<?= $page->tax()?->toString() ?>)<br>
+								<?= tt('product.gross-price', ['price' => $page->price()->toString('price')]) ?>
+							<?php endif ?>
+						</small>
+					<?php endif ?>
 				</div>
 
 				<div class="stack-s">
@@ -49,6 +53,10 @@
 							<?= $page->stockInfo() ?>
 						</div>
 					<?php endif; ?>
+				</div>
+			<?php else: ?>
+				<div class="color-gray-600">
+					<?= tt('product.unavailable', ['region' => $page->kirby()->language()->name()]) ?>
 				</div>
 			<?php endif ?>
 		</div>

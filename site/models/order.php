@@ -16,6 +16,6 @@ class OrderPage extends \Wagnerwagner\Merx\OrderPage
 	 */
 	public function title(): Field
 	{
-		return new Field($this, 'title', t('order.invoice') . ' ' . $this->invoiceNumber());
+		return new Field($this, 'title', t('order.invoice') . ' ' . $this->orderNumber());
 	}
 }

@@ -5,6 +5,8 @@
  * custom global functions and site methods.
  */
 
+ use Kirby\Cms\App;
+
 /**
   * Checks if requested amount of a specific item could be added to cart
   *
@@ -33,7 +35,7 @@ function checkStock(object $productPage, float $quantity)
     }
 }
 
-Kirby::plugin('site/site', [
+App::plugin('site/site', [
     'fieldMethods' => [
         'toIntlDate' => function (
             $field,

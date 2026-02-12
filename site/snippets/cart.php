@@ -42,7 +42,7 @@ foreach ($cart->filterByType('shipping') as $shippingItem) {
 									<strong><?= $productPage->parent()->title() ?></strong>
 									<small><?= $productPage->variantName() ?></small>
 								<?php else: ?>
-									<strong><?= $item->title ?></strong>
+									<strong><?= $productPage->title() ?></strong>
 								<?php endif; ?>
 							</a>
 						<?php else: ?>

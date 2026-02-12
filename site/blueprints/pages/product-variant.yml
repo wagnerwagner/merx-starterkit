@@ -34,4 +34,4 @@ tabs:
         query: page.images
         require: true
   orders:
-    extends: ww.merx.tabs/orders
+    extends: wagnerwagner.merx.tabs/orders

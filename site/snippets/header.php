@@ -6,7 +6,7 @@
 		<?= $site->title() ?>
 	</a>
 	<div class="lang-switch">
-		<?php foreach ($kirby->languages()->not($kirby->language()) as $language) : ?>
+		<?php foreach ($kirby->languages() as $language) : ?>
 			<a href="<?= $page->url($language->code()) ?>"><?= $language->name() ?></a>
 		<?php endforeach; ?>
 	</div>

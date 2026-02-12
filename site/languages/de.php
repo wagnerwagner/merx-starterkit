@@ -7,7 +7,7 @@ return [
   'locale' => [
     'LC_ALL' => 'de_DE.utf-8'
   ],
-  'name' => 'Deutsch',
+  'name' => 'Germany',
   'translations' => [
     'taxRule.default' => 'Standard',
     'taxRule.reduced' => 'Ermäßigt',
@@ -47,7 +47,7 @@ return [
     'order.shipping.shipped' => 'Ihre Bestellung wurde versandt.',
     'order.shipping.text' => 'Ihre Bestellung wird in den nächsten Tagen versendet.',
     'order.shipping' => 'Versand',
-    'paymentMethod.creditCardSca.label' => 'Kreditkarte',
+    'paymentMethod.creditCard.label' => 'Kreditkarte',
     'paymentMethod.ideal.label' => 'iDeal',
     'paymentMethod.ideal.submitText' => 'Weiter zu iDeal',
     'paymentMethod.klarna.label' => 'Klarna',
@@ -59,6 +59,7 @@ return [
     'product.add-to-cart' => 'In den Warenkorb',
     'product.amount' => 'Menge',
     'product.color' => 'Farbe',
+    'product.tax-free' => 'Ohne Mehrwertsteuer',
     'product.excluding-tax' => 'Exklusive Mehrwertsteuer',
     'product.gross-price' => 'Brutto: {price}',
     'product.including-shipping' => 'Zuzüglich <a href="{url}">Versandkosten</a>',
@@ -67,6 +68,7 @@ return [
     'product.stock.info.1' => 'Nur noch ein Produkt verfügbar',
     'product.stock.info' => 'Nur noch {stock} verfügbar',
     'product.stock.sold-out' => 'Derzeit leider nicht lieferbar',
+    'product.unavailable' => 'Das Produkt ist in Ihrer Region ({region}) nicht verfübar.',
     'stock.not-available.1' => 'Von „{productTitle}“ ist nur noch ein Artikel verfügbar.',
     'stock.not-available.count' => 'Von „{productTitle}“ sind nur noch {availableStock} Artikel verfügbar.',
     'stock.not-available' => '„{productTitle}“ ist leider nicht mehr verfügbar.',

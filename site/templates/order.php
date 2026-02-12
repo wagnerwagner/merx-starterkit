@@ -11,6 +11,9 @@
  * @var string $paymentMethod
  * @var string $total
  */
+
+ use Wagnerwagner\Merx\Merx;
+
 ?>
 <?php snippet('head') ?>
 
@@ -23,7 +26,7 @@
 				<?= $page->title() ?>
 			</h1>
 			<p data-width="1/1">
-				<strong><?= t('order.date') ?> <?= $page->invoiceDate()->toIntlDate() ?></strong>
+				<strong><?= t('order.date') ?> <?= $page->dateCreated()->toIntlDate() ?></strong>
 			</p>
 			<p class="text" data-width="2/3">
 				<?= $page->name() ?><br>
@@ -41,7 +44,7 @@
 				<h2><?= t('order.payment') ?></h2>
 				<p><?= tt('order.payment.text', compact('paymentMethod')) ?></p>
 				<?php if ($page->paymentComplete()->toBool() === true): ?>
-					<p><?= tt('order.payment.text.paid.date', ['datetime' => $page->paidDate()->toIntlDate()]) ?></p>
+					<p><?= tt('order.payment.text.paid.date', ['datetime' => $page->datePaid()->toIntlDate()]) ?></p>
 				<?php endif; ?>
 				<?php if ($page->paymentMethod()->toString() === 'prepayment' && $page->paymentComplete()->toBool() === false): ?>
 					<p>
@@ -57,7 +60,7 @@
 						</tr>
 						<tr>
 							<th><?= t('order.invoice.iban') ?></th>
-							<td><?= formatIBAN('DE0000000000000000') ?></td>
+							<td><?= Merx::formatIBAN('DE0000000000000000') ?></td>
 						</tr>
 						<tr>
 							<th><?= t('order.invoice.total') ?></th>
