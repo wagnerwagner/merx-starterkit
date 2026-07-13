@@ -9,7 +9,7 @@
 <body>
 	<?php snippet('header') ?>
 
-	<main class="grid product" data-id="<?= $page->uuid() ?>" data-currency="<?= $page->price()?->currency() ?>">
+	<main class="grid product">
 		<h1 data-width="1/1"><?= $page->title() ?></h1>
 		<img
 			src="<?= $page->thumb()->toFile()->thumb('default')->url() ?>"
@@ -41,12 +41,12 @@
 				</div>
 
 				<div class="stack-s">
-					<button
-						class="button"
-						data-action="add-to-cart"
-					>
-						<?= t('product.add-to-cart') ?>
-					</button>
+					<form class="product-form" action="<?= url('api/shop/cart') ?>" method="post">
+						<input type="hidden" name="page" value="<?= $page->uuid() ?>">
+						<button class="button">
+							<?= t('product.add-to-cart') ?>
+						</button>
+					</form>
 
 					<?php if ($page->stockInfo()): ?>
 						<div class="color-gray-600">

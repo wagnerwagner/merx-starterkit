@@ -38,6 +38,7 @@ li {
 }
 a {
   color: currentColor;
+	text-underline-offset: 0.3ex;
 }
 button {
   font: inherit;

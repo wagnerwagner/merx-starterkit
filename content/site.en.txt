@@ -2,8 +2,8 @@ Title: Merx Starterkit Shop
 
 ----
 
-Freeshipping: 200
+Maxquantity: 20
 
 ----
 
-Maxamount: 10
+Freeshipping: 200

@@ -29,6 +29,11 @@
 }
 .header-nav a {
   padding: 1rem;
+
+	&[aria-current="page"] {
+		text-decoration: underline;
+		text-decoration-color: var(--color-gray-500);
+	}
 }
 
 .logo {
@@ -49,4 +54,9 @@
 }
 .lang-switch a {
   padding: 0.5rem;
+
+	&[aria-current="page"] {
+		text-decoration: underline;
+		text-decoration-color: var(--color-gray-400);
+	}
 }

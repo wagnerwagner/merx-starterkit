@@ -30,12 +30,12 @@ class ProductVariantPage extends \Wagnerwagner\Merx\ProductPage
 		return $this->parent()->url($options) . '#' . $this->uid();
 	}
 
-	public function maxAmount(): float
+	public function maxQuantity(): float
 	{
-		if ($this->stock()->isNotEmpty() && $this->stock()->toFloat() < $this->site()->maxAmount()->toFloat()) {
+		if ($this->stock()->isNotEmpty() && $this->stock()->toFloat() < $this->site()->maxQuantity()->toFloat()) {
 			return $this->stock()->toFloat();
 		}
-		return $this->site()->maxAmount()->toFloat();
+		return $this->site()->maxQuantity()->toFloat();
 	}
 
 	public function stockInfo(): ?string

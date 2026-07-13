@@ -5,13 +5,13 @@ Title: Sofa
 Prices:
 
 - 
-  price: 2950
-  pricingrule: default
-  currency: USD
-- 
   price: 2800
-  pricingrule: en
+  pricingrule: default
   currency: EUR
+- 
+  price: 2950
+  pricingrule: en
+  currency: USD
 
 ----
 
@@ -28,10 +28,6 @@ Blocks: [{"content":{"text":"<p>Ut enim ad minim veniam, quis nostrud exercitati
 ----
 
 Thumb: - file://LPEe98pYBj5iMOXo
-
-----
-
-Taxrule: default
 
 ----
 

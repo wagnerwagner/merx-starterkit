@@ -25,7 +25,7 @@ return [
     'cart.vat-included' => 'VAT incl.',
     'cart' => 'Cart',
     'field.payment-method' => 'Payment method',
-    'field.pricing' => 'Pricing rule (Währung)',
+    'field.pricing' => 'Currency',
     'field.tax-rate' => 'Tax rate',
     'order.date' => 'Date',
     'order.invoice-number' => 'Invoice Number',

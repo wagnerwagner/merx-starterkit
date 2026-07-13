@@ -2,11 +2,11 @@
 @import 'variables.css';
 
 /* COMPONENTS */
-@import 'components/cart.css';
 @import 'components/field.css';
 @import 'components/footer.css';
 @import 'components/grid.css';
 @import 'components/header.css';
 @import 'components/notice.css';
 @import 'components/product-grid.css';
+@import 'components/my-cart.css';
 
