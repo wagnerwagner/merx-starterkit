@@ -99,16 +99,6 @@ class Checkout {
 				// https://stripe.com/docs/js/element/mount
 				stripeIbanElement.mount('#stripe-iban');
 			}
-
-			if (document.getElementById('stripe-ideal')) {
-				// Create Stripe IDEAL
-				// https://stripe.com/docs/js/elements_object/create_element
-				const stripeIbanElement = this.stripeElements.create('ideal', {
-					style: stripeStyle,
-				});
-				// https://stripe.com/docs/js/element/mount
-				stripeIbanElement.mount('#stripe-ideal');
-			}
 		}
 
 		submitElement.dataset.defaultSubmitText = submitElement.innerText;

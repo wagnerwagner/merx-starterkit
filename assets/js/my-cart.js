@@ -106,6 +106,7 @@ customElements.define('my-cart', class extends HTMLElement {
 						</li>
 				`).join('')}
 				<p>Total: ${this.data?.total.price}</p>
+				<a href="${this.data?.checkout?.url}">${this.data?.checkout?.title ?? 'Buy'}</a>
 			` : 'Empty cart'}
 			</ul>
 		`;
