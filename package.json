@@ -1,6 +1,17 @@
 {
   "devDependencies": {
     "@stripe/stripe-js": "^3.5.0",
-    "eslint-config-airbnb": "^19.0.4"
+    "eslint-config-airbnb": "^19.0.4",
+    "local-dev-server": "file:../local-dev-server"
+  },
+  "scripts": {
+    "start-local-dev-server": "local-dev-server up",
+    "stop-local-dev-server": "local-dev-server down"
+  },
+  "config": {
+    "localDevServer": {
+      "domain": "starterkit.merx.wagnerwagner.test",
+      "php": "8.5"
+    }
   }
 }
