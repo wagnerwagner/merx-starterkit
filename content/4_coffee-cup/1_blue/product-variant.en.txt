@@ -6,7 +6,7 @@ Variantname: Blue
 
 ----
 
-Prices:
+Price:
 
 - 
   price: 15

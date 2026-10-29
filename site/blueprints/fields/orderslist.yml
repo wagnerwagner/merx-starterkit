@@ -1,0 +1,12 @@
+# Merx comes with a default list of orders (https://merx.wagnerwagner.de/reference/blueprints/fields/orders).
+# You could use the default field with `extends: fields/orders` in any blueprint as described in the Kirby documentation (https://getkirby.com/docs/guide/blueprints/extending-blueprints)
+# In this example we want to extend the Merx field and modify the `text` option.
+# `wagnerwagner.merx.fields/orders` is an alias of `fields/orders`, which still points to Merx if you replace `fields/orders` with a file of your own.
+
+extends: wagnerwagner.merx.fields/orders
+
+# The `page` variable is an order page. In our `order` blueprint we require name and city.
+# So we can safely output these fields next to the orderNumber.
+# text: "#{{ page.orderNumber }} – {{ page.name }}, {{ page.city }}"
+
+# info: "{{ page.total.toString }} | {{ page.dateCreated.toIntlDate }}"

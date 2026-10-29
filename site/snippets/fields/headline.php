@@ -7,12 +7,12 @@
  * @var array $field
  *  Example:
  *  array(8) {
+ *    ["default"] => NULL
+ *    ["disabled"] => bool(true)
+ *    ["hidden"] => bool(false)
  *    ["label"] => string(8) "Shipping"
  *    ["name"] => string(16) "headlineshipping"
- *    ["numbered"] => bool(false)
  *    ["saveable"] => bool(false)
- *    ["signature"] => string(32) "249e3c48b86e40cf8fe4818d6488c02c"
- *    ["strict"] => bool(true)
  *    ["type"] => string(8) "headline"
  *    ["width"] => string(3) "1/1"
  *  }

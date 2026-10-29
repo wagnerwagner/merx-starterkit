@@ -2,7 +2,7 @@ Variantname: Yellow
 
 ----
 
-Prices:
+Price:
 
 - 
   price: 10

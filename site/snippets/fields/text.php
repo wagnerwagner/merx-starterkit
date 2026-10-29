@@ -11,29 +11,28 @@ use Kirby\Toolkit\I18n;
  * @see https://getkirby.com/docs/reference/panel/fields/text
  * @see https://github.com/getkirby/kirby/blob/main/panel/src/components/Forms/Field/TextField.vue
  * @var array $field
+ *  `disabled` is always true, because customers cannot edit pages in the
+ *  Panel. It is ignored here: a browser does not submit a disabled input.
  *  Example:
- *  array(15) {
- *    ["autofocus"]  => bool(false)
+ *  array(16) {
+ *    ["autofocus"] => bool(false)
  *    ["counter"] => bool(true)
- *    ["default"]=> string(16) "mail@example.com"
- *    ["disabled"] => bool(false)
+ *    ["default"] => string(0) ""
+ *    ["disabled"] => bool(true)
+ *    ["font"] => string(10) "sans-serif"
+ *    ["hidden"] => bool(false)
  *    ["label"] => string(4) "Name"
+ *    ["maxlength"] => int(160)
+ *    ["minlength"] => int(3)
  *    ["name"] => string(12) "shippingname"
  *    ["required"] => bool(true)
  *    ["saveable"] => bool(true)
- *    ["signature"]  => string(32) "267fa7b7de75f1834bd505210dfb5227"
- *    ["spellcheck"] => bool(false)
- *    ["strict"] => bool(true)
  *    ["translate"] => bool(false)
  *    ["type"] => string(4) "text"
- *    ["validate"] => array(1) {
- *      ["minLength"] => int(3)
- *      ["maxLength"] => int(160)
- *    }
  *    ["when"] => array(1) {
  *      ["billingAddressIsShippingAddress"] => bool(false)
  *    }
- *    ["width"]      => string(3) "1/1"
+ *    ["width"] => string(3) "1/1"
  *  }
  */
 ?>
@@ -61,10 +60,10 @@ use Kirby\Toolkit\I18n;
       'placeholder' => isset($field['placeholder']) ? $field['placeholder'] : null,
       'value' => isset($field['default']) ? $field['default'] : null,
       'autocomplete' => isset($field['autocomplete']) ? $field['autocomplete'] : null,
-      'max' => isset($field['validate']['max']) ?$field['validate']['max'] : null,
-      'maxLength' => isset($field['validate']['maxLength']) ?$field['validate']['maxLength'] : null,
-      'min' => isset($field['validate']['min']) ?$field['validate']['min'] : null,
-      'minLength' => isset($field['validate']['minLength']) ?$field['validate']['minLength'] : null,
+      'max' => $field['max'] ?? null,
+      'maxlength' => $field['maxlength'] ?? null,
+      'min' => $field['min'] ?? null,
+      'minlength' => $field['minlength'] ?? null,
     ]) ?>
   >
   <?php if (isset($field['help'])): ?>

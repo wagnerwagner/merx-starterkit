@@ -10,19 +10,18 @@ use Kirby\Toolkit\I18n;
  * @see https://getkirby.com/docs/reference/panel/fields/toggle
  * @var array $field
  *  Example:
- *  array(13) {
+ *  array(12) {
  *    ["autofocus"] => bool(false)
- *    ["default"] => bool(true)
- *    ["disabled"] => bool(false)
+ *    ["default"] => string(4) "true"
+ *    ["disabled"] => bool(true)
+ *    ["hidden"] => bool(false)
  *    ["label"] => string(39) "Use billing address as shipping address"
  *    ["name"] => string(31) "billingaddressisshippingaddress"
  *    ["required"] => bool(false)
  *    ["saveable"] => bool(true)
- *    ["signature"] => string(32) "99e373c372d83d369b81d8cb90a6dacb"
- *    ["strict"] => bool(true)
  *    ["text"] => array(2) {
- *      [0] => string(2) "No"
- *      [1] => string(3) "Yes"
+ *      [0] => object(Kirby\Toolkit\HtmlString) "No"
+ *      [1] => object(Kirby\Toolkit\HtmlString) "Yes"
  *    }
  *    ["translate"] => bool(false)
  *    ["type"] => string(6) "toggle"

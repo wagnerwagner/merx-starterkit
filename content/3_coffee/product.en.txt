@@ -2,7 +2,7 @@ Title: Coffee
 
 ----
 
-Prices:
+Price:
 
 - 
   price: 5.99

@@ -4,7 +4,7 @@ use Kirby\Content\Field;
 
 /**
  * It is required to create an Order Page Model
- * https://merx.wagnerwagner.de/docs/getting-started/set-up#order-page-model
+ * https://merx.wagnerwagner.de/guide/upgrade-merx-1-to-2#order-page-model
  *
  * @author Tobias Wolf
  */

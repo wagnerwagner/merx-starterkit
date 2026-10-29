@@ -13,46 +13,38 @@ tabs:
     columns:
       -
         width: 2/3
-        sections:
-          fields:
-            type: fields
-            fields:
-              prices:
-                extends: fields/prices
-              taxRule:
-                # This could be a simple number field.
-                # For this example we use a global storage with different tax rates. In this case there is a `default` and a `reduced` tax which is defined in `site/config/config.php`. The key (`default` or `reduced`) is stored in the tax field. Because of this we need to transform the `key` (e.g. `reduced ) into a number field (e.g. `7`) with the help of Page Models. (see `site/models/product.php` and `site/models/product-variant.php`).
-                # Why do we want this? When the tax for products with reduced tax rate changes (e.g. from 7 to 5) we only have to change this in one place. Otherwise we would need to change the tax for every product.
-                extends: fields/tax-rule
-                width: 1/2
-              stock:
-                label:
-                  en: Stock
-                  de: Verfügbare Produkte
-                type: number
-                placeholder:
-                  en: infinite
-                  de: unendlich
-                translate: false
-                width: 1/2
-              blocks:
-                type: blocks
+        fields:
+          price:
+            type: prices
+            width: 1/2
+          taxRule:
+            type: taxrules
+            width: 1/2
+          stock:
+            label:
+              en: Stock
+              de: Verfügbare Produkte
+            type: number
+            placeholder:
+              en: infinite
+              de: unendlich
+            translate: false
+            width: 1/2
+          blocks:
+            type: blocks
       -
         width: 1/3
-        sections:
-          content:
-            type: fields
-            fields:
-              thumb:
-                type: files
-                multiple: false
-                layout: cards
-                query: page.images
-                require: true
-                width: 1/3
-                image:
-                  ratio: 6/4
-                translate: false
+        fields:
+          thumb:
+            type: files
+            multiple: false
+            layout: cards
+            query: page.images
+            require: true
+            width: 1/3
+            image:
+              ratio: 6/4
+            translate: false
 
   orders:
     extends: wagnerwagner.merx.tabs/orders

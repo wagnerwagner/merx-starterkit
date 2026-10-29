@@ -41,11 +41,11 @@ return [
 	'wagnerwagner.merx.taxRules' => [
 		'default' => [
 			'name' => fn (): string => t('taxRule.default'),
-			'rule' => fn (?App $kirby): float => $kirby->languageCode() === 'de' ? 0.19 : 0.20,
+			'rate' => fn (?App $kirby): float => $kirby->languageCode() === 'de' ? 0.19 : 0.20,
 		],
 		'reduced' => [
 			'name' => fn (): string => t('taxRule.reduced'),
-			'rule' => function (?App $kirby): ?float {
+			'rate' => function (?App $kirby): ?float {
 				switch ($kirby->languageCode()) {
 					case 'de':
 						return 0.07;
@@ -64,13 +64,12 @@ return [
 	 */
 	'wagnerwagner.merx.pricingRules' => [
 		'default' => [
-			'name' => 'EUR',
 			'currency' => 'EUR',
 			'rule' => fn (?App $kirby): bool => $kirby->languageCode() !== 'us',
 			'taxIncluded' => true,
 		],
 		'en' => [
-			'name' => 'USD',
+			'name' => 'USA',
 			'currency' => 'USD',
 			'rule' => fn (?App $kirby): bool => $kirby->languageCode() === 'us',
 			'taxIncluded' => false,
@@ -105,6 +104,23 @@ return [
 		'capture_method' => 'automatic_async',
 		'payment_method_options' => [
 			'card' => ['capture_method' => 'manual'],
+		],
+	],
+
+	/**
+	 * Mail preset used by the `wagnerwagner.merx.createOrder:after` hook below.
+	 * Defining sender and template here (instead of inline) follows Kirby’s
+	 * recommended pattern for email presets.
+	 * https://getkirby.com/docs/guide/emails#presets
+	 * https://merx.wagnerwagner.de/guide/getting-started/sending-emails
+	 */
+	'email' => [
+		'presets' => [
+			'createOrder' => [
+				'from' => 'info@merx-starterkit.example',
+				'fromName' => 'Merx Starterkit',
+				'template' => 'create-order',
+			],
 		],
 	],
 
@@ -173,7 +189,7 @@ return [
 		'wagnerwagner.merx.cart.*:after' => function (Event $event, Cart $cart, $key = null) {
 			/**
 			 * Update shipping
-			 * https://merx.wagnerwagner.de/cookbooks/shipping-costs-and-discounts
+			 * https://merx.wagnerwagner.de/cookbook/shipping-costs-and-discounts
 			 */
 
 			$site = site();
@@ -195,10 +211,10 @@ return [
 				}
 			}
 		},
-		'wagnerwagner.merx.completePayment:after' => function (OrderPage $orderPage) {
+		'wagnerwagner.merx.paymentCompleted' => function (OrderPage $orderPage) {
 			/**
 			 * Update stock
-			 * https://merx.wagnerwagner.de/cookbooks/stock-management
+			 * https://merx.wagnerwagner.de/cookbook/stock-management
 			 */
 			if (option('debug') !== true) {
 				foreach($orderPage->cart() as $cartItem) {
@@ -210,6 +226,32 @@ return [
 						]);
 					}
 				}
+			}
+		},
+		'wagnerwagner.merx.createOrder:after' => function (OrderPage $orderPage) {
+			/**
+			 * Send an order confirmation mail to the customer.
+			 * Uses the `createOrder` preset defined above and the
+			 * text template at /site/templates/emails/create-order.php.
+			 * https://merx.wagnerwagner.de/guide/getting-started/sending-emails
+			 *
+			 * The order is already created at this point, so a failed send
+			 * (e.g. no local SMTP catcher like Mailpit running) must not
+			 * break the checkout response — log it instead.
+			 */
+			try {
+				kirby()->email('createOrder', [
+					'to' => [(string)$orderPage->email() => (string)$orderPage->name()],
+					'subject' => t('email.createOrder.subject'),
+					'data' => [
+						'orderPage' => $orderPage,
+					],
+				]);
+			} catch (Throwable $exception) {
+				Logger::log([
+					'message' => 'Could not send order confirmation mail: ' . $exception->getMessage(),
+					'orderPage' => $orderPage->id(),
+				], 'error');
 			}
 		},
 	],

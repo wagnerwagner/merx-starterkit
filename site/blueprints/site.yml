@@ -4,36 +4,36 @@ tabs:
     label:
       en: Pages
       de: Seiten
-    sections:
+    fields:
       homepage:
-        headline:
+        label:
           en: Homepage
           de: Startseite
-        type: pages
+        type: pagelist
         template: home
       pages:
-        headline:
+        label:
           en: Pages
           de: Seiten
-        type: pages
+        type: pagelist
         template:
           - default
           - product
           - product-variants
         info: "{{ page.intendedTemplate.name }}"
       errorPage:
-        headline:
+        label:
           en: Error Page
           de: Fehler-Seite
-        type: pages
+        type: pagelist
         template: error
   orders:
     icon: draft
     label:
       en: Orders
       de: Bestellungen
-    sections:
+    fields:
       orders:
-        extends: sections/orders
+        extends: fields/orderslist
   shopSettings:
     extends: tabs/shop-settings

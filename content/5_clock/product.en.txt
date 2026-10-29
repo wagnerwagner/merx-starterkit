@@ -2,7 +2,7 @@ Title: Clock
 
 ----
 
-Prices:
+Price:
 
 - 
   price: 250

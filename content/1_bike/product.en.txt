@@ -2,7 +2,7 @@ Title: Bike
 
 ----
 
-Prices:
+Price:
 
 - 
   price: 1900

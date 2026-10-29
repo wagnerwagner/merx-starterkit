@@ -13,26 +13,23 @@ image:
   query: page.thumb.toFile
   cover: true
 
-sections:
+fields:
   variants:
-    type: pages
+    type: pagelist
     templates: product-variant
     text: "{{ page.variantName }}"
     info: "{{ page.price.toString }}, Stock: {{ page.stock }}"
-  fields:
-    type: fields
-    fields:
-      blocks:
-        type: blocks
-        width: 2/3
-      defaultVariant:
-        label:
-          en: Default Variant
-          de: Standard-Variante
-        type: pages
-        text: "{{ page.variantName }}"
-        info: "{{ page.price.toString }}, Stock: {{ page.stock }}"
-        translate: false
-        multiple: false
-        query: page.variants
-        width: 1/3
+  blocks:
+    type: blocks
+    width: 2/3
+  defaultVariant:
+    label:
+      en: Default Variant
+      de: Standard-Variante
+    type: pages
+    text: "{{ page.variantName }}"
+    info: "{{ page.price.toString }}, Stock: {{ page.stock }}"
+    translate: false
+    multiple: false
+    query: page.variants
+    width: 1/3

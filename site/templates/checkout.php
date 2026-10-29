@@ -1,7 +1,7 @@
 <?php
 /**
  * Shows a form to collect user data and payment information.
- * The form is build using the personalData section of the order blueprint.
+ * The form is built from the personalData tab of the order blueprint.
  * See site/controllers/checkout.php for more information.
  * Each field type has a own snippet (e.g. snippet('fields/text') - /site/snippets/fields/text.php).
  * If no suitable snippet is found, fields/text snippet is used.
