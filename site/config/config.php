@@ -211,23 +211,6 @@ return [
 				}
 			}
 		},
-		'wagnerwagner.merx.paymentCompleted' => function (OrderPage $orderPage) {
-			/**
-			 * Update stock
-			 * https://merx.wagnerwagner.de/cookbook/stock-management
-			 */
-			if (option('debug') !== true) {
-				foreach($orderPage->cart() as $cartItem) {
-					$productPage = page($cartItem['id']);
-					if ($productPage && $productPage->stock()->isNotEmpty()) {
-						$stock = $productPage->stock()->toFloat();
-						$productPage->update([
-							'stock' => $stock - (float)$cartItem['quantity'],
-						]);
-					}
-				}
-			}
-		},
 		'wagnerwagner.merx.createOrder:after' => function (OrderPage $orderPage) {
 			/**
 			 * Send an order confirmation mail to the customer.

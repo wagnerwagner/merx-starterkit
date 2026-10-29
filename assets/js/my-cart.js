@@ -99,7 +99,7 @@ customElements.define('my-cart', class extends HTMLElement {
 						<li class="cart-item">
 							${item.thumb ? `<img src="${item.thumb.src}" srcset="${item.thumb.srcset}" alt="${item.thumb.alt}" sizes="40px">` : ''}
 							<strong>${item.title}</strong>
-							<input type="number" data-key="${item.key}" name="quantity" max="${item.data.maxQuantity}" min="1" value="${item.quantity}">
+							<input type="number" data-key="${item.key}" name="quantity" min="1" value="${item.quantity}">
 							<button name="remove" value="${item.key}">Remove</button>
 							<em>${item.total.price}</em>
 							${item.quantity > 1 ? `<small>${item.quantity} × ${item.price.price}</small>` : ''}
