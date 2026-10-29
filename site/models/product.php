@@ -20,25 +20,17 @@ class ProductPage extends Wagnerwagner\Merx\ProductPage
 		return $price;
 	}
 
-	public function maxQuantity(): float
-	{
-		if ($this->stock()->isNotEmpty() && $this->stock()->toFloat() < $this->site()->maxQuantity()->toFloat()) {
-			return $this->stock()->toFloat();
-		}
-		return $this->site()->maxQuantity()->toFloat();
-	}
-
 	public function stockInfo(): ?string
 	{
 		$stockInfo = null;
-		$stock = $this->stock()->isNotEmpty() ? $this->stock()->toInt() : null;
+		$stock = $this->stock();
 		$productTitle = $this->title();
 		if ($stock !== null) {
-			if ($stock === 0) {
+			if ($stock === 0.0) {
 				$stockInfo = tt('product.stock.sold-out', compact('productTitle'));
-			} else if ($stock === 1) {
+			} else if ($stock === 1.0) {
 				$stockInfo = tt('product.stock.info.1', compact('productTitle'));
-			} else if ($stock <= 5) {
+			} else if ($stock <= 5.0) {
 				$stockInfo = tt('product.stock.info', compact('productTitle', 'stock'));
 			}
 		}
