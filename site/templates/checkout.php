@@ -6,8 +6,11 @@
  * Each field type has a own snippet (e.g. snippet('fields/text') - /site/snippets/fields/text.php).
  * If no suitable snippet is found, fields/text snippet is used.
  *
+ * When an order cannot be completed after the payment, e.g. because the
+ * customer canceled at PayPal, Merx sends them back to this page.
+ * `merx()->error()` tells why, once.
+ *
  * @var array $fields
- * @var mixed $message
  */
 ?>
 <?php snippet('head') ?>
@@ -17,6 +20,10 @@
 
 	<main class="checkout">
 		<h1><?= $page->title() ?></h1>
+
+		<?php if ($error = merx()->error()): ?>
+			<p class="error" role="alert"><?= esc($error['message']) ?></p>
+		<?php endif ?>
 
 		<div class="cart" id="cart" data-variant="checkout" data-theme="dark"></div>
 

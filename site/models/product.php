@@ -5,9 +5,13 @@ use Wagnerwagner\Merx\PricingRule;
 
 class ProductPage extends Wagnerwagner\Merx\ProductPage
 {
-	public function price(null|string|PricingRule $pricingRule = null, null|float $quantity = null): ?Price
+	public function price(string|PricingRule|null $pricingRule = null, float|null $quantity = null, array|null $data = null): Price|null
 	{
-		$price = parent::price($pricingRule, $quantity);
+		$price = parent::price($pricingRule, $quantity, $data);
+		// A product without a price for the pricing rule, e.g. the clock in the USA
+		if ($price === null) {
+			return null;
+		}
 		if ($quantity >= 5) {
 			$price = $price->updatePrice($price->price * 0.98);
 		}

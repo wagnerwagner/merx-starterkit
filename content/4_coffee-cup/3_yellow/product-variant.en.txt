@@ -4,11 +4,11 @@ Variantname: Yellow
 
 Price:
 
-- 
-  price: 10
+-
+  price: 10.0
   pricingrule: default
-- 
-  price: 9
+-
+  price: 9.0
   pricingrule: en
 
 ----
@@ -17,19 +17,11 @@ Taxrule: default
 
 ----
 
-Stock: 22
+Stock: 21
 
 ----
 
-Thumb: - file://Ug5Ay0LUjrBpARbW
-
-----
-
-Price: 15
-
-----
-
-Taxrule: default
+Thumb: - 'file://Ug5Ay0LUjrBpARbW'
 
 ----
 

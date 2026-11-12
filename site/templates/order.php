@@ -7,6 +7,9 @@
  * To prevent this, you might add an extra layer of security.
  * More information: https://merx.wagnerwagner.de/docs/security
  *
+ * Merx stores what the customer entered as it is. Every field which comes
+ * from the checkout form has to be escaped here, with `$field->escape()`.
+ *
  * @var OrderPage $page
  * @var string $paymentMethod
  * @var string $total
@@ -29,13 +32,13 @@
 				<strong><?= t('order.date') ?> <?= $page->dateCreated()->toIntlDate() ?></strong>
 			</p>
 			<p class="text" data-width="2/3">
-				<?= $page->name() ?><br>
+				<?= $page->name()->escape() ?><br>
 				<?php if ($page->organization()->isNotEmpty()): ?>
-					<?= $page->organization() ?><br>
+					<?= $page->organization()->escape() ?><br>
 				<?php endif; ?>
-				<?= $page->streetAddress() ?><br>
-				<?= $page->postalCode() ?> <?= $page->city() ?><br>
-				<?= $page->country() ?><br>
+				<?= $page->streetAddress()->escape() ?><br>
+				<?= $page->postalCode()->escape() ?> <?= $page->city()->escape() ?><br>
+				<?= $page->country()->escape() ?><br>
 			</p>
 			<div data-width="1/1">
 				<?php snippet('cart', ['cart' => $page->cart()]); ?>
@@ -43,10 +46,10 @@
 			<div class="text" data-width="1/2">
 				<h2><?= t('order.payment') ?></h2>
 				<p><?= tt('order.payment.text', compact('paymentMethod')) ?></p>
-				<?php if ($page->paymentComplete()->toBool() === true): ?>
+				<?php if ($page->isPaid() === true): ?>
 					<p><?= tt('order.payment.text.paid.date', ['datetime' => $page->datePaid()->toIntlDate()]) ?></p>
 				<?php endif; ?>
-				<?php if ($page->paymentMethod()->toString() === 'prepayment' && $page->paymentComplete()->toBool() === false): ?>
+				<?php if ($page->paymentMethod()->toString() === 'prepayment' && $page->isPaid() === false): ?>
 					<p>
 						<?= t('order.payment.text.not-yet-paid') ?><br>
 						<?= tt('order.payment.text.invoice', [
@@ -77,21 +80,21 @@
 				<h2><?= t('order.shipping-address') ?></h2>
 				<p>
 					<?php if ($page->billingAddressIsShippingAddress()->toBool() === true): ?>
-						<?= $page->name() ?><br>
+						<?= $page->name()->escape() ?><br>
 						<?php if ($page->organization()->isNotEmpty()): ?>
-							<?= $page->organization() ?><br>
+							<?= $page->organization()->escape() ?><br>
 						<?php endif; ?>
-						<?= $page->streetAddress() ?><br>
-						<?= $page->postalCode() ?> <?= $page->city() ?><br>
-						<?= $page->country() ?>
+						<?= $page->streetAddress()->escape() ?><br>
+						<?= $page->postalCode()->escape() ?> <?= $page->city()->escape() ?><br>
+						<?= $page->country()->escape() ?>
 					<?php else: ?>
-						<?= $page->shippingName() ?><br>
+						<?= $page->shippingName()->escape() ?><br>
 						<?php if ($page->shippingOrganization()->isNotEmpty()): ?>
-							<?= $page->shippingOrganization() ?><br>
+							<?= $page->shippingOrganization()->escape() ?><br>
 						<?php endif; ?>
-						<?= $page->shippingStreetAddress() ?><br>
-						<?= $page->shippingPostalCode() ?> <?= $page->shippingCity() ?><br>
-						<?= $page->shippingCountry() ?>
+						<?= $page->shippingStreetAddress()->escape() ?><br>
+						<?= $page->shippingPostalCode()->escape() ?> <?= $page->shippingCity()->escape() ?><br>
+						<?= $page->shippingCountry()->escape() ?>
 					<?php endif; ?>
 				</p>
 			</div>

@@ -34,4 +34,16 @@ tabs:
         query: page.images
         require: true
   orders:
-    extends: wagnerwagner.merx.tabs/orders
+    icon: list-numbers
+    fields:
+      orders:
+        extends: fields/orders
+        query: page.orders.flip
+        # What the order holds of this variant, see `ProductPage::orders()`
+        columns:
+          quantity:
+            label: field.quantity
+          price:
+            label: field.price
+          producttotal:
+            label: field.total

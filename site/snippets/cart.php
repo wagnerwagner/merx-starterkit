@@ -1,8 +1,6 @@
 <?php
 
 use Wagnerwagner\Merx\ListItem;
-use Wagnerwagner\Merx\Merx;
-use Wagnerwagner\Merx\Price;
 
 /**
  * Used for the order page template.
@@ -11,11 +9,7 @@ use Wagnerwagner\Merx\Price;
  * @var Wagnerwagner\Merx\Cart $cart
  */
 
-$shippingPrice = new Price(0);
-foreach ($cart->filterByType('shipping') as $shippingItem) {
-	$shippingPrice->price += $shippingItem->total()->price;
-	$shippingPrice->currency = $shippingItem->price->currency;
-}
+$shippingPrice = $cart->filterByType('shipping')->total();
 ?>
 <div class="cart">
 	<table>
@@ -47,7 +41,7 @@ foreach ($cart->filterByType('shipping') as $shippingItem) {
 							</a>
 						<?php else: ?>
 						<?php /** If the a product page won’t be available anymore, at least the product title will be shown */ ?>
-							<strong><?= $item->title ?? $item->key ?></strong>
+							<strong><?= esc($item->title ?? $item->key) ?></strong>
 						<?php endif; ?>
 					</th>
 					<td><?= $item->quantity ?></td>
@@ -59,15 +53,16 @@ foreach ($cart->filterByType('shipping') as $shippingItem) {
 		<tfoot>
 			<tr>
 				<th colspan="3"><?= t('cart.shipping') ?></th>
-				<td><?= $shippingPrice->price === 0.0 ? t('cart.free-shipping') : $shippingPrice->toString() ?></td>
+				<td><?= $shippingPrice?->price > 0 ? $shippingPrice->toString() : t('cart.free-shipping') ?></td>
 			</tr>
 			<tr>
 				<th colspan="3"><?= t('cart.total') ?></th>
-				<td><?= $cart->total()->toString() ?></td>
+				<?php /** The amount to pay: the gross total, also when the prices above are net prices, as in the USA */ ?>
+				<td><?= $cart->total()->toString('price') ?></td>
 			</tr>
 			<?php foreach ($cart->taxRates() as $taxRate): ?>
 				<tr class="text-s">
-					<th colspan="3"><?= t('cart.included-vat') ?> (<?= Merx::formatPercent($taxRate->rate) ?>)</th>
+					<th colspan="3"><?= t('cart.included-vat') ?> (<?= $taxRate->rate() ?>)</th>
 					<td><?= $taxRate->toString() ?></td>
 				</tr>
 			<?php endforeach; ?>

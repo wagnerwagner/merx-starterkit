@@ -29,12 +29,4 @@ Thumb: - file://o9c6ea2ibjvxymdu
 
 ----
 
-Price: 15
-
-----
-
-Taxrule: default
-
-----
-
 Uuid: Cjw5Lg5x6mpRrwzQ

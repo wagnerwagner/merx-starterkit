@@ -8,43 +8,56 @@ image:
   query: page.thumb.toFile
   cover: true
 
+fields:
+  price:
+    extends: fields/price
+    width: 5/12
+  taxRule:
+    extends: fields/tax-rule
+    width: 4/12
+  stock:
+    extends: fields/stock
+    width: 3/12
+  blocks:
+    type: blocks
+  thumb:
+    type: files
+    multiple: false
+    layout: cards
+    query: page.images
+    require: true
+    width: 1/3
+    image:
+      ratio: 6/4
+    translate: false
+
 tabs:
   content:
+    icon: draft
     columns:
       -
-        width: 2/3
+        width: 8/12
         fields:
-          price:
-            type: prices
-            width: 1/2
-          taxRule:
-            type: taxrules
-            width: 1/2
-          stock:
-            label:
-              en: Stock
-              de: Verfügbare Produkte
-            type: number
-            placeholder:
-              en: infinite
-              de: unendlich
-            translate: false
-            width: 1/2
-          blocks:
-            type: blocks
+          - price
+          - taxRule
+          - stock
+          - blocks
       -
-        width: 1/3
+        width: 4/12
         fields:
-          thumb:
-            type: files
-            multiple: false
-            layout: cards
-            query: page.images
-            require: true
-            width: 1/3
-            image:
-              ratio: 6/4
-            translate: false
+          - thumb
 
   orders:
-    extends: wagnerwagner.merx.tabs/orders
+    icon: list-numbers
+    fields:
+      orders:
+        extends: fields/orders
+        query: page.orders.flip
+        # What the order holds of this product, see `ProductPage::orders()`
+        columns:
+          quantity:
+            label: field.quantity
+          price:
+            label: field.price
+          producttotal:
+            label: field.total

@@ -35,5 +35,3 @@ tabs:
     fields:
       orders:
         extends: fields/orderslist
-  shopSettings:
-    extends: tabs/shop-settings

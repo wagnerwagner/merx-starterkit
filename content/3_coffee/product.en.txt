@@ -31,8 +31,4 @@ Thumb: - file://qUTWssWkM77FfWxC
 
 ----
 
-Taxrule: reduced
-
-----
-
 Uuid: USduRZiOXAHxSuLM

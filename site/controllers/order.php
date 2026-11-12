@@ -8,6 +8,8 @@ return function (OrderPage $page) {
 
 	return [
 		'paymentMethod' => t('paymentMethod.' . $paymentMethod . '.label'),
-		'total' => $cart->total()->toString(),
+		// The amount to pay: the gross total, also when the prices of the
+		// order are net prices, as in the USA
+		'total' => $cart->total()->toString('price'),
 	];
 };

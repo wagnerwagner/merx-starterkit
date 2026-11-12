@@ -156,26 +156,6 @@ return [
 				]);
 			}
 		},
-		'page.update:after' => function (\Kirby\Cms\Page $newPage, \Kirby\Cms\Page $oldPage) {
-			if ($newPage->intendedTemplate()->name() === 'order' && $newPage->isListed()) {
-				/**
-				 * For the “prepayment” payment method the datePaid is not set automatically after
-				 * the user completes the checkout (as in contrast to e.g. PayPal or credit card payment).
-				 * This hook sets the paid date when paymentComplete field switches form false to true.
-				 */
-				if ($newPage->paymentComplete()->toBool() !== $oldPage->paymentComplete()->toBool()) {
-					if ($newPage->paymentComplete()->isTrue()) {
-						$newPage->update([
-							'datePaid' => date('c'),
-						]);
-					} else {
-						$newPage->update([
-							'datePaid' => '',
-						]);
-					}
-				}
-			}
-		},
 		'route:after' => function () {
 			/**
 			 * Sets strict Content Security Policy (CSP) and other security related headers for non-panel URLs

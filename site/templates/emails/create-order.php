@@ -3,7 +3,7 @@
 
 <?= tt('email.createOrder.text', [
 	'orderNumber' => $orderPage->orderNumber(),
-	'total' => $orderPage->total(),
+	'total' => $orderPage->total()->toString('price'),
 ]) ?>
 
 <?= $orderPage->url() ?>

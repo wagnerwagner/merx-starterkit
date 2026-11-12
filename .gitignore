@@ -30,6 +30,7 @@ Icon
 
 /content/**/order.txt
 /content/**/order.*.txt
+/content/**/.merx-*.lock
 
 
 # Editors
