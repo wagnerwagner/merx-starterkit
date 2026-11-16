@@ -1,0 +1,114 @@
+/**
+ * The cart as a table: on the order page (/site/snippets/cart.php)
+ * and as <my-cart> (/assets/js/my-cart.js)
+ */
+.cart,
+my-cart {
+	padding: var(--spacing-m);
+	background-color: var(--color-white);
+	font-feature-settings: "tnum";
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	th,
+	td {
+		padding: var(--spacing-s);
+		text-align: start;
+		vertical-align: top;
+	}
+
+	/** Price and total */
+	td:nth-last-child(-n + 2) {
+		text-align: end;
+		white-space: nowrap;
+	}
+
+	thead {
+		font-weight: 600;
+		color: var(--color-gray-500);
+	}
+
+	tbody {
+		a {
+			text-decoration: none;
+		}
+
+		img {
+			float: inline-start;
+			width: 3rem;
+			margin-inline-end: var(--spacing-m);
+		}
+
+		input {
+			display: block;
+			width: 3rem;
+			font: inherit;
+			color-scheme: dark;
+		}
+
+		button {
+			font-size: var(--text-s);
+			color: var(--color-gray-500);
+		}
+	}
+
+	tfoot {
+		th,
+		td {
+			padding-block: var(--spacing-xs);
+		}
+
+		th {
+			text-align: end;
+		}
+	}
+}
+
+/**
+ * The cart of the visitor: in the header as a popover below its button,
+ * on the checkout page as part of the page
+ */
+my-cart {
+	color: var(--color-white);
+	background-color: var(--color-black);
+
+	&[popover] {
+		position-anchor: --cart-button;
+		position-area: block-end span-inline-start;
+		margin: 0;
+		margin-inline-end: var(--spacing-m);
+		border: 0;
+	}
+
+	.button-white {
+		margin-block-start: var(--spacing-s);
+	}
+}
+
+.header :is([popovertarget="cart"], .link-cart) {
+	anchor-name: --cart-button;
+	justify-self: end;
+	padding: var(--spacing-m);
+	font-weight: 600;
+}
+
+.cart {
+	thead {
+		> tr > *:first-child {
+			inline-size: 60%;
+		}
+	}
+}
+
+.vat {
+	display: flex;
+	gap: var(--spacing-s);
+	justify-content: space-between;
+
+	> span {
+		width: 4ch;
+	}
+}

@@ -15,18 +15,10 @@
 			<?= t('cart') ?> <span class="cart-count"></span>
 		</a>
 	<?php else: ?>
-		<button class="button-cart" id="cart-button" data-action="toggle-cart" popovertarget="cart">
+		<button popovertarget="cart">
 			<?= t('cart') ?> <span class="cart-count"></span>
 		</button>
-		<my-cart id="cart" theme="dark" popover anchor="cart-button">
-			<?php
-			/**
-			* The cart is loaded asynchronously. This is why you can make use of Kirby’s page cache and
-			* provide your users a very fast web shop.
-			* The cart’s content is loaded by `assets/js/my-cart.js`.
-			*/
-			?>
-		</my-cart>
+		<?php snippet('my-cart', ['popover' => true]) ?>
 	<?php endif; ?>
 	<nav class="header-nav">
 		<?php foreach ($site->children()->listed() as $item) : ?>

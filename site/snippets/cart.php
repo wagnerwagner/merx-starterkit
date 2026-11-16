@@ -1,15 +1,10 @@
 <?php
-
-use Wagnerwagner\Merx\ListItem;
-
 /**
- * Used for the order page template.
- * PHP equivalent to /assets/js/cart.js
+ * The cart of an order, see /site/templates/order.php
+ * The same table as /assets/js/my-cart.js renders for the cart of the visitor.
  *
- * @var Wagnerwagner\Merx\Cart $cart
+ * @var Wagnerwagner\Merx\ProductList $cart
  */
-
-$shippingPrice = $cart->filterByType('shipping')->total();
 ?>
 <div class="cart">
 	<table>
@@ -23,49 +18,48 @@ $shippingPrice = $cart->filterByType('shipping')->total();
 		</thead>
 		<tbody>
 			<?php foreach ($cart->filterByType('product') as $item): ?>
-				<?php /** @var ListItem $item */ ?>
+				<?php /** @var Wagnerwagner\Merx\ListItem $item */ ?>
 				<tr>
 					<th>
-						<?php /** Get more information about the product by catching the product page */ ?>
-						<?php if ($productPage = $item->page): ?>
-							<a href="<?= $productPage->url() ?>">
-								<?php if ($thumb = $productPage->thumb()->toFile()): ?>
-									<img src="<?= $thumb->thumb('thumb')->url() ?>" alt="<?= $thumb->alt() ?>" width="46" height="46" loading="lazy">
-								<?php endif; ?>
-								<?php if ($productPage->intendedTemplate()->name() === 'product-variant'): ?>
-									<strong><?= $productPage->parent()->title() ?></strong>
-									<small><?= $productPage->variantName() ?></small>
-								<?php else: ?>
-									<strong><?= $productPage->title() ?></strong>
-								<?php endif; ?>
+						<?php if ($itemPage = $item->page): ?>
+							<a href="<?= $itemPage->url() ?>">
+						<?php endif ?>
+							<?php /** The product may be gone by now. Its title is kept in the order. */ ?>
+							<?php if ($thumb = $itemPage?->thumb()->toFile()): ?>
+								<img src="<?= $thumb->thumb('thumb')->url() ?>" srcset="<?= $thumb->srcset('thumb') ?>" sizes="46px" alt="<?= $thumb->alt()->escape() ?>">
+							<?php endif ?>
+							<?= esc($item->title) ?>
+						<?php if ($itemPage): ?>
 							</a>
-						<?php else: ?>
-						<?php /** If the a product page won’t be available anymore, at least the product title will be shown */ ?>
-							<strong><?= esc($item->title ?? $item->key) ?></strong>
-						<?php endif; ?>
+						<?php endif ?>
 					</th>
 					<td><?= $item->quantity ?></td>
-					<td><?= $item->price->toString() ?></td>
-					<td><?= $item->total()->toString() ?></td>
+					<td><?= $item->price ?></td>
+					<td><?= $item->total() ?></td>
 				</tr>
 			<?php endforeach ?>
 		</tbody>
 		<tfoot>
+			<?php $shipping = $cart->filterByType('shipping')->total() ?>
 			<tr>
 				<th colspan="3"><?= t('cart.shipping') ?></th>
-				<td><?= $shippingPrice?->price > 0 ? $shippingPrice->toString() : t('cart.free-shipping') ?></td>
+				<td><?= $shipping?->price > 0 ? $shipping : t('cart.free-shipping') ?></td>
 			</tr>
 			<tr>
 				<th colspan="3"><?= t('cart.total') ?></th>
 				<?php /** The amount to pay: the gross total, also when the prices above are net prices, as in the USA */ ?>
 				<td><?= $cart->total()->toString('price') ?></td>
 			</tr>
-			<?php foreach ($cart->taxRates() as $taxRate): ?>
-				<tr class="text-s">
-					<th colspan="3"><?= t('cart.included-vat') ?> (<?= $taxRate->rate() ?>)</th>
-					<td><?= $taxRate->toString() ?></td>
+			<?php /** Keyed by their rate, e.g. `0.19`. Numbered from 0 for the first row. */ ?>
+			<?php $taxRates = array_values($cart->taxRates()) ?>
+			<?php foreach ($taxRates as $index => $tax): ?>
+				<tr class="text-s color-gray-500">
+					<?php if ($index === 0): ?>
+						<th colspan="3" rowspan="<?= count($taxRates) ?>"><?= t('cart.included-vat') ?></th>
+					<?php endif ?>
+					<td class="vat"><span><?= $tax->rate() ?></span> <?= $tax ?></td>
 				</tr>
-			<?php endforeach; ?>
+			<?php endforeach ?>
 		</tfoot>
 	</table>
 </div>

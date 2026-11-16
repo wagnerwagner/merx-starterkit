@@ -21,13 +21,12 @@
 	<main class="checkout">
 		<h1><?= $page->title() ?></h1>
 
-		<?php if ($error = merx()->error()): ?>
-			<p class="error" role="alert"><?= esc($error['message']) ?></p>
-		<?php endif ?>
-
-		<div class="cart" id="cart" data-variant="checkout" data-theme="dark"></div>
+		<?php snippet('my-cart') ?>
 
 		<form class="grid" method="post" id="checkout-form" action="/api/shop/checkout">
+			<?php if ($error = merx()->error()): ?>
+				<p class="error" role="alert"><?= esc($error['message']) ?></p>
+			<?php endif ?>
 			<?php foreach ($fields as $field) : ?>
 				<?= snippet(['fields/' . $field['type'], 'fields/text'], compact('field')) ?>
 			<?php endforeach; ?>
@@ -38,7 +37,6 @@
 		</form>
 		<?php if (option('debug') === true && option('wagnerwagner.merx.production')	=== false): ?>
 			<?php snippet('checkout-info') ?>
-			</div>
 		<?php endif; ?>
 	</main>
 

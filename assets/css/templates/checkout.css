@@ -41,12 +41,12 @@
 
 @media (min-width: 1024px) {
   .checkout {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 1fr;
     grid-auto-flow: dense;
     align-items: start;
   }
 
-  .checkout .cart {
+  .checkout my-cart {
     position: sticky;
     top: var(--spacing-m);
     grid-row-end: span 2;

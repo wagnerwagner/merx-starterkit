@@ -26,7 +26,4 @@
 		<?= js('assets/js/templates/checkout.js', ['defer' => true]) ?>
 		<?= js('assets/js/templates/conditional-fields.js', ['defer' => true,]) ?>
 	<?php endif; ?>
-	<?php if ($page->intendedTemplate()->name() === 'order') : ?>
-		<?= css('assets/css/templates/order.css') ?>
-	<?php endif; ?>
 </head>

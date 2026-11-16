@@ -4,11 +4,11 @@ Title: Bike
 
 Price:
 
-- 
-  price: 1900
+-
+  price: 1900.0
   pricingrule: default
-- 
-  price: 2000
+-
+  price: 2000.0
   pricingrule: en
 
 ----
@@ -25,7 +25,7 @@ Blocks: [{"content":{"text":"<p>Aenean lacinia bibendum nulla sed consectetur. D
 
 ----
 
-Thumb: - file://DKyNcKMktvTrqg7V
+Thumb: - 'file://DKyNcKMktvTrqg7V'
 
 ----
 
