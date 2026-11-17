@@ -5,18 +5,25 @@
  * https://merx.wagnerwagner.de/guide/getting-started/showing-the-cart
  */
 
-/** A price as the shop shows it: net, when the pricing rule excludes tax (USA) */
+/** @typedef {import("./merx").Cart} Cart */
+/** @typedef {import("./merx").ListItem} ListItem */
+/** @typedef {import("./merx").Price} Price */
+
+/**
+ * A price as the shop shows it: net, when the pricing rule excludes tax (USA)
+ * @param {Partial<Price> | null | undefined} price
+ */
 const amount = (price) => (price?.taxIncluded === false ? price.priceNet : price?.price) ?? '';
 
 customElements.define('my-cart', class extends HTMLElement {
 	/** The translated labels, see /site/snippets/my-cart.php */
 	label = {};
 
-	/** @see https://merx.wagnerwagner.de/reference/api/models/cart */
+	/** @type {Cart | null} */
 	cart = null;
 
 	async connectedCallback() {
-		this.label = JSON.parse(this.dataset.translations);
+		this.label = JSON.parse(this.dataset.translations ?? '{}');
 		this.render(await this.request('GET'));
 	}
 
@@ -26,7 +33,12 @@ customElements.define('my-cart', class extends HTMLElement {
 		this.showPopover();
 	}
 
-	/** Sends a request to the cart API of Merx and returns the cart */
+	/**
+	 * Sends a request to the cart API of Merx and returns the cart
+	 * @param {'GET' | 'POST' | 'PATCH' | 'DELETE'} method
+	 * @param {object} [body]
+	 * @returns {Promise<Cart | null>}
+	 */
 	async request(method, body) {
 		const response = await fetch('/api/shop/cart', {
 			method,
@@ -50,7 +62,10 @@ customElements.define('my-cart', class extends HTMLElement {
 		return this.cart;
 	}
 
-	/** Renders the whole cart: a row for every product and the totals */
+	/**
+	 * Renders the whole cart: a row for every product and the totals
+	 * @param {Cart | null} cart
+	 */
 	render(cart) {
 		const { label } = this;
 		const products = cart?.products?.items ?? [];
@@ -79,7 +94,10 @@ customElements.define('my-cart', class extends HTMLElement {
 		this.renderTotals(cart);
 	}
 
-	/** Renders the row of a product and makes its quantity field and remove button work */
+	/**
+	 * Renders the row of a product and makes its quantity field and remove button work
+	 * @param {ListItem} item
+	 */
 	renderItem(item) {
 		const { label } = this;
 		const row = document.createElement('tr');
@@ -129,7 +147,10 @@ customElements.define('my-cart', class extends HTMLElement {
 		return row;
 	}
 
-	/** Renders shipping, total and taxes */
+	/**
+	 * Renders shipping, total and taxes
+	 * @param {Cart} cart
+	 */
 	renderTotals(cart) {
 		const { label } = this;
 
@@ -140,7 +161,7 @@ customElements.define('my-cart', class extends HTMLElement {
 			</tr>
 			<tr>
 				<th colspan="3">${label.total}</th>
-				<td>${cart.total.price}</td>
+				<td>${cart.total?.price ?? ''}</td>
 			</tr>
 			${cart.taxRates.map((tax, index) => `
 				<tr class="text-s color-gray-500">
@@ -150,7 +171,7 @@ customElements.define('my-cart', class extends HTMLElement {
 					<td class="vat"><span>${tax.rate}</span> ${tax.price}</td>
 				</tr>
 			`).join('')}
-			${this.popover ? `
+			${this.popover && cart.checkout ? `
 				<tr>
 					<td colspan="4">
 						<a class="button-white" href="${cart.checkout.url}">${cart.checkout.title}</a>

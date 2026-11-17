@@ -30,7 +30,6 @@
 								data-image-width="<?= $variant->thumb()->toFile()->thumb('default')->width() ?>"
 								data-image-height="<?= $variant->thumb()->toFile()->thumb('default')->height() ?>"
 								data-image-alt="<?= $variant->thumb()->toFile()->alt() ?>"
-								data-price="<?= $variant->price()?->toString() ?>"
 								data-stock-info="<?= $variant->stockInfo() ?>"
 							>
 								<?= $variant->variantName() ?>
@@ -39,8 +38,13 @@
 					</select>
 				</div>
 				<div class="price">
-					<?= $page->defaultVariant()->price()?->toString() ?>
+					<?php snippet('price', ['product' => $page->defaultVariant()]) ?>
 				</div>
+				<?php foreach ($page->variants() as $variant) : ?>
+					<template data-price="<?= $variant->uuid() ?>">
+						<?php snippet('price', ['product' => $variant]) ?>
+					</template>
+				<?php endforeach ?>
 				<div class="stack-s">
 					<button
 						class="button"

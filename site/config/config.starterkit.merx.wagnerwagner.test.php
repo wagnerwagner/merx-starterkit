@@ -22,7 +22,6 @@
  */
 return [
     'debug' => true,
-    'wagnerwagner.merx.production' => false,
     'email' => [
       'transport' => [
         'type' => 'smtp',

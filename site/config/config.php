@@ -96,11 +96,11 @@ return [
 	'wagnerwagner.merx.paypal.live.secret' => '',
 
 	'wagnerwagner.merx.production' => false,
-	// 'wagnerwagner.merx.license' => 'MERX-XXXXXXXX-XXXXXXXX',
+	'wagnerwagner.merx.reduceStock' => false,
+	// 'wagnerwagner.merx.license' => 'MERX2-XXXXXXXX-XXXXXXXX',
 
 	'wagnerwagner.merx.stripe.paymentIntentParameters' => [
-		'payment_method_types' => ['card', 'ideal', 'sepa_debit', 'klarna'],
-		'automatic_payment_methods' => ['enabled' => false],
+		'allowed_payment_method_types' => ['card', 'ideal', 'sepa_debit', 'klarna'],
 		'capture_method' => 'automatic_async',
 		'payment_method_options' => [
 			'card' => ['capture_method' => 'manual'],

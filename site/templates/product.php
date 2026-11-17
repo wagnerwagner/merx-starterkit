@@ -24,20 +24,7 @@
 			</div>
 			<?php if ($page->price()): ?>
 				<div class="price">
-					<?= $page->price()?->toString() ?>
-					<?php if ($page->tax() === null): ?>
-						<small><?= t('product.tax-free') ?></small>
-					<?php else: ?>
-						<small>
-							<?php if ($page->price()->taxIncluded()): ?>
-								<?= tt('product.including-tax', ['tax' => $page->tax()?->rate()]) ?> (<?= $page->tax()?->toString() ?>)<br>
-								<?= tt('product.net-price', ['price' => $page->price()->toString('priceNet')]) ?>
-							<?php else: ?>
-								<?= tt('product.excluding-tax', ['tax' => $page->tax()?->rate()]) ?> (<?= $page->tax()?->toString() ?>)<br>
-								<?= tt('product.gross-price', ['price' => $page->price()->toString('price')]) ?>
-							<?php endif ?>
-						</small>
-					<?php endif ?>
+					<?php snippet('price', ['product' => $page]) ?>
 				</div>
 
 				<div class="stack-s">

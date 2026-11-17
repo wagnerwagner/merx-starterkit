@@ -34,6 +34,5 @@ tabs:
       de: Bestellungen
     fields:
       orders:
-        extends: fields/orderslist
+        extends: wagnerwagner.merx.fields/orders
         parent: site.ordersPage
-        flip: true

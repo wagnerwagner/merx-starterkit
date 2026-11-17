@@ -14,8 +14,11 @@ class ProductVariants {
         // update element’s “id”. This id is used to add the product to the cart (see product.js).
         element.setAttribute('data-id', selectElement.value);
 
-        // update price and image
-        priceElement.innerText = selectedOption.dataset.price;
+        // update price and tax, rendered for every variant by site/snippets/price.php
+        const priceTemplate = element.querySelector(`template[data-price="${selectElement.value}"]`);
+        priceElement.replaceChildren(priceTemplate.content.cloneNode(true));
+
+        // update image
         imageElement.setAttribute('src', selectedOption.dataset.image);
         imageElement.setAttribute('alt', selectedOption.dataset.imageAlt);
         imageElement.setAttribute('width', selectedOption.dataset.imageWidth);
@@ -25,7 +28,7 @@ class ProductVariants {
         slotStockInfoElement.innerText = selectedOption.dataset.stockInfo;
 
         // update url the get a unique uri for each product variant
-        window.location.hash = `#${selectedOption.getAttribute('name')}`;
+        window.location.hash = `#${selectedOption.dataset.uid}`;
       }
     }
 
@@ -33,9 +36,10 @@ class ProductVariants {
       // Use “substr(1)” to remove first “#”
       const hash = window.location.hash.substr(1);
 
-      // update select element if url hash a hash value
-      if (hash) {
-        selectElement.value = selectElement.namedItem(hash).value;
+      // update select element if url has a hash value, see ProductVariantPage::url()
+      const option = [...selectElement.options].find(({ dataset }) => dataset.uid === hash);
+      if (option) {
+        selectElement.value = option.value;
         updateProductVariant();
       }
     }
