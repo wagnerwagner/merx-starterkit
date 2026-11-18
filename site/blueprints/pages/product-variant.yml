@@ -38,7 +38,7 @@ tabs:
     fields:
       orders:
         extends: fields/orders
-        query: page.orders.flip
+        query: page.orders
         # What the order holds of this variant, see `ProductPage::orders()`
         columns:
           quantity:
