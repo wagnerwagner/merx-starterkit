@@ -29,6 +29,7 @@ return [
     'email.createOrder.greeting' => 'Guten Tag { name },',
     'email.createOrder.subject' => 'Danke für Ihre Bestellung!',
     'email.createOrder.text' => 'vielen Dank für Ihre Bestellung „{ orderNumber }“. Sie haben { total } bezahlt.',
+    'email.createOrder.text.not-yet-paid' => 'vielen Dank für Ihre Bestellung „{ orderNumber }“. Bitte überweisen Sie { total } wie auf Ihrer Bestellseite beschrieben.',
     'field.payment-method' => 'Bezahlmethode',
     'field.pricing' => 'Preisregel (Währung)',
     'field.tax-rate' => 'Steuersatz',
@@ -72,9 +73,6 @@ return [
     'product.stock.info' => 'Nur noch {stock} verfügbar',
     'product.stock.sold-out' => 'Derzeit leider nicht lieferbar',
     'product.unavailable' => 'Das Produkt ist in Ihrer Region ({region}) nicht verfübar.',
-    'stock.not-available.1' => 'Von „{productTitle}“ ist nur noch ein Artikel verfügbar.',
-    'stock.not-available.count' => 'Von „{productTitle}“ sind nur noch {availableStock} Artikel verfügbar.',
-    'stock.not-available' => '„{productTitle}“ ist leider nicht mehr verfügbar.',
   ],
   'url' => 'de',
 ];

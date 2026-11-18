@@ -27,6 +27,7 @@ return [
     'email.createOrder.greeting' => 'Dear { name },',
     'email.createOrder.subject' => 'Thank you for your order!',
     'email.createOrder.text' => 'thank you for your order “{ orderNumber }”. You have paid { total }.',
+    'email.createOrder.text.not-yet-paid' => 'thank you for your order “{ orderNumber }”. Please pay { total } as described on your order page.',
     'field.payment-method' => 'Payment method',
     'field.pricing' => 'Currency',
     'field.tax-rate' => 'Tax rate',
@@ -70,9 +71,6 @@ return [
     'product.stock.info' => 'Only {stock} available',
     'product.stock.sold-out' => 'Currently not available',
     'product.unavailable' => 'This product is not available in your region ({region})',
-    'stock.not-available.1' => 'There are only one item left of “{productTitle}”.',
-    'stock.not-available.count' => 'There are only {availableStock} items left of “{productTitle}”.',
-    'stock.not-available' => '“{productTitle}” is no longer available.',
   ],
   'url' => ''
 ];

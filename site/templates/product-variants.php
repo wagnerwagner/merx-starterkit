@@ -4,7 +4,7 @@
 <body>
 	<?php snippet('header') ?>
 
-	<main class="grid product product-variants" data-id="<?= $page->defaultVariant()->uuid() ?>" data-parent-id="<?= $page->id() ?>">
+	<main class="grid product product-variants">
 		<h1 data-width="1/1"><?= $page->title() ?></h1>
 		<img
 			src="<?= $page->thumb()->toFile()->thumb('default')->url() ?>"
@@ -20,7 +20,8 @@
 				</div>
 				<div class="stack-s">
 					<label class="color-gray-700" for="color"><?= t('product.color') ?></label>
-					<select data-action="update-variant" id="color" name="key">
+					<?php /** Sends the selected variant as `page`, see https://merx.wagnerwagner.de/cookbook/product-variants */ ?>
+					<select data-action="update-variant" id="color" name="page">
 						<?php foreach ($page->variants() as $variant) : ?>
 							<option
 								value="<?= $variant->uuid() ?>"

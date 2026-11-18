@@ -11,8 +11,7 @@ class ProductVariants {
       const selectedOption = selectElement.selectedOptions[0];
 
       if (selectedOption) {
-        // update element’s “id”. This id is used to add the product to the cart (see product.js).
-        element.setAttribute('data-id', selectElement.value);
+        // The select element itself sends the selected variant to the cart (see product.js)
 
         // update price and tax, rendered for every variant by site/snippets/price.php
         const priceTemplate = element.querySelector(`template[data-price="${selectElement.value}"]`);

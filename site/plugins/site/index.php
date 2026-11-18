@@ -1,39 +1,10 @@
 <?php
 /**
  * This is the supplementary, custom plugin for the shop.
- * It provides custom API routes (e.g. POST /api/shop/cart/),
- * custom global functions and site methods.
+ * It provides custom field methods and site methods.
  */
 
- use Kirby\Cms\App;
-
-/**
-  * Checks if requested amount of a specific item could be added to cart
-  *
-  * @param ProductPage|ProductVariantPage $productPage
-  */
-function checkStock(object $productPage, float $quantity)
-{
-    $siteMaxAmount = $productPage->site()->maxAmount()->toFloat();
-    $maxAmount = $productPage->maxAmount();
-    $productTitle = $productPage->title();
-    if ($quantity > $siteMaxAmount) {
-        $maxAmount = $siteMaxAmount;
-        $exceptionMessage = tt('stock.maxAmount', compact('maxAmount', 'productTitle'));
-    } elseif ($quantity > $maxAmount) {
-        if ($productPage->maxAmount() === 0) {
-            $exceptionMessage = tt('stock.not-available', compact('productTitle'));
-        } elseif ($productPage->maxAmount() === 1) {
-            $exceptionMessage = tt('stock.not-available.1', compact('productTitle'));
-        } else {
-            $availableStock = $maxAmount;
-            $exceptionMessage = tt('stock.not-available.count', compact('productTitle', 'availableStock'));
-        }
-    }
-    if (isset($exceptionMessage)) {
-        throw new Exception($exceptionMessage);
-    }
-}
+use Kirby\Cms\App;
 
 App::plugin('site/site', [
     'fieldMethods' => [

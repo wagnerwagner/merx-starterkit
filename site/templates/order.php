@@ -5,7 +5,7 @@
  * By default this page is only protected by its cryptic URL (e.g. /orders/e8vsmomjbb8vjtp5).
  * These URLs can’t be guessed but if an attacker knows the URL it has access to user data.
  * To prevent this, you might add an extra layer of security.
- * More information: https://merx.wagnerwagner.de/docs/security
+ * More information: https://merx.wagnerwagner.de/guide/security
  *
  * Merx stores what the customer entered as it is. Every field which comes
  * from the checkout form has to be escaped here, with `$field->escape()`.

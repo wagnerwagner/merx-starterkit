@@ -6,12 +6,12 @@ return function (): Kirby\Toolkit\Collection
 			'value' => 'paypal',
 			'label' => t('paymentMethod.paypal.label'),
 			'submitText' => t('paymentMethod.paypal.submitText'),
-						'paymentGateway' => 'paypal'
+			'paymentGateway' => 'paypal'
 		],
 		'credit-card' => [
 			'value' => 'card',
 			'label' => t('paymentMethod.creditCard.label'),
-						'paymentGateway' => 'stripe'
+			'paymentGateway' => 'stripe'
 		],
 		'prepayment' => [
 			'value' => 'prepayment',

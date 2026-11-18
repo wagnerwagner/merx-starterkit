@@ -81,9 +81,10 @@ return [
 	 * For production mode (to make real payments) you have to add the live keys,
 	 * set production to true and add the Merx license.
 	 *
-	 * You can add custom keys for specific domains. The Starterkit demo has a custom
-	 * config file (config.starterkit.merx.wagnerwagner.de.php) the its secret keys.
-	 * More information: https://getkirby.com/docs/guide/configuration#multi-environment-setup
+	 * Never commit your keys. Put them in /site/config/env.php instead, which
+	 * overrides this file and is excluded from Git (see /.gitignore).
+	 * Every environment (development, live server) gets its own env.php.
+	 * https://merx.wagnerwagner.de/guide/configuration/stripe-paypal-secrets
 	 */
 	'wagnerwagner.merx.stripe.test.publishable_key' => '',
 	'wagnerwagner.merx.stripe.test.secret_key' => '',
@@ -96,8 +97,16 @@ return [
 	'wagnerwagner.merx.paypal.live.secret' => '',
 
 	'wagnerwagner.merx.production' => false,
-	'wagnerwagner.merx.reduceStock' => false,
 	// 'wagnerwagner.merx.license' => 'MERX2-XXXXXXXX-XXXXXXXX',
+
+	/**
+	 * The “Prepayment” payment method uses the `invoice` gateway, which takes
+	 * no payment. Merx only offers it once it is switched on.
+	 * https://merx.wagnerwagner.de/guide/payment-gateways/invoice
+	 */
+	'wagnerwagner.merx.gateways' => [
+		'invoice' => true,
+	],
 
 	'wagnerwagner.merx.stripe.paymentIntentParameters' => [
 		'allowed_payment_method_types' => ['card', 'ideal', 'sepa_debit', 'klarna'],

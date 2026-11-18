@@ -14,7 +14,7 @@
 		<h3>PayPal</h3>
 		<?php if (empty($paypalPublishableKey)): ?>
 			<p>
-				To use/test PayPal payments, you will need to login your <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fdeveloper.paypal.com%2Fdeveloper%2Fapplications" rel="noopener">PayPal Developer Dashboard</a> and create a client ID and a secret. You have to add these keys to <code>site/config/config.php</code> (see <a href="https://merx.wagnerwagner.de/reference/options/config-options" rel="noopener">Merx options</a>).
+				To use/test PayPal payments, you will need to login your <a href="https://www.paypal.com/signin?returnUri=https%3A%2F%2Fdeveloper.paypal.com%2Fdeveloper%2Fapplications" rel="noopener">PayPal Developer Dashboard</a> and create a client ID and a secret. You have to add these keys to <code>site/config/env.php</code> (see <a href="https://merx.wagnerwagner.de/reference/options/config-options" rel="noopener">Merx options</a>).
 			</p>
 		<?php else: ?>
 			<p>
@@ -25,7 +25,7 @@
 
 		<?php if (empty($stripePublishableKey)): ?>
 			<h3>Credit Card, SEPA Direct Debit and Klarna (Stripe)</h3>
-			<p>To use/test one of these payment methods, you will need to login to your Stripe account and create a publishable and a private key. You have to add these keys to <code>site/config/config.php</code> (see <a href="https://merx.wagnerwagner.de/reference/options/config-options" rel="noopener">Merx options</a>).</p>
+			<p>To use/test one of these payment methods, you will need to login to your Stripe account and create a publishable and a private key. You have to add these keys to <code>site/config/env.php</code> (see <a href="https://merx.wagnerwagner.de/reference/options/config-options" rel="noopener">Merx options</a>).</p>
 		<?php else: ?>
 			<h3>Credit Card</h3>
 			<p>

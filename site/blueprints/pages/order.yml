@@ -1,0 +1,18 @@
+# Merx stores only the fields of the order blueprint and drops whatever else
+# the checkout form sends. The payment method the customer chose
+# (e.g. “card” or “prepayment”, see /site/collections/payment-methods.php)
+# is no field of Merx’ own blueprint, so it is added here as a hidden field.
+# It is used in /site/controllers/order.php and /site/templates/order.php.
+#
+# Extend Merx’ blueprint instead of replacing it: it holds the options which
+# keep an order from being deleted or renamed in the Panel.
+# https://merx.wagnerwagner.de/guide/security
+
+extends: wagnerwagner.merx.pages/order
+
+tabs:
+  overview:
+    fields:
+      paymentMethod:
+        type: hidden
+        translate: false

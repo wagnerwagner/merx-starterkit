@@ -187,7 +187,7 @@ class Checkout {
 
 			if (response.redirected === true) {
 				// Redirect user to order page
-				window.location.href = location;
+				window.location.href = response.url;
 			} else {
 				const json = await response.json();
 

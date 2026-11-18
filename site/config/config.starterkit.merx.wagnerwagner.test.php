@@ -21,14 +21,17 @@
  * container/network).
  */
 return [
-    'debug' => true,
-    'email' => [
-      'transport' => [
-        'type' => 'smtp',
-        'host' => 'mail.test',
-        'port' => 1025,
-        'security' => false,
-        'auth' => false,
-      ],
-    ],
+	'debug' => true,
+	// Test orders leave the stock of the products alone
+	// https://merx.wagnerwagner.de/guide/getting-started/stock
+	'wagnerwagner.merx.reduceStock' => false,
+	'email' => [
+		'transport' => [
+			'type' => 'smtp',
+			'host' => 'mail.test',
+			'port' => 1025,
+			'security' => false,
+			'auth' => false,
+		],
+	],
 ];
