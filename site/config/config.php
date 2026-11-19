@@ -88,11 +88,13 @@ return [
 	 */
 	'wagnerwagner.merx.stripe.test.publishable_key' => '',
 	'wagnerwagner.merx.stripe.test.secret_key' => '',
+	'wagnerwagner.merx.stripe.test.webhook_signing_secret' => '',
 	'wagnerwagner.merx.paypal.sandbox.clientID' => '',
 	'wagnerwagner.merx.paypal.sandbox.secret' => '',
 
 	'wagnerwagner.merx.stripe.live.publishable_key' => '',
 	'wagnerwagner.merx.stripe.live.secret_key' => '',
+	'wagnerwagner.merx.stripe.live.webhook_signing_secret' => '',
 	'wagnerwagner.merx.paypal.live.clientID' => '',
 	'wagnerwagner.merx.paypal.live.secret' => '',
 
