@@ -1,5 +1,7 @@
 /* global Stripe */
 
+/** @see https://merx.wagnerwagner.de/cookbook/stripe-card-element */
+
 /** @typedef {import("../../../node_modules/@stripe/stripe-js/dist/stripe-js/index").Stripe} Stripe */
 /** @typedef {import("../../../node_modules/@stripe/stripe-js/dist/stripe-js/index").StripeElements} StripeElements */
 
