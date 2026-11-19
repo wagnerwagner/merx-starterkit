@@ -136,6 +136,9 @@ return [
 	],
 
 	'hooks' => [
+		/**
+		 * Use Merx’ Logger to log Kirby exceptions.
+		 */
 		'system.exception' => function (Throwable $exception) {
 			try {
 				if (option('debug') !== true) {
