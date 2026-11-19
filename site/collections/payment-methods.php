@@ -16,7 +16,7 @@ return function (): Kirby\Toolkit\Collection
 		'prepayment' => [
 			'value' => 'prepayment',
 			'label' => t('paymentMethod.prepayment.label'),
-						'paymentGateway' => 'invoice'
+			'paymentGateway' => 'invoice'
 		],
 		'sepa-debit' => [
 			'value' => 'sepa-debit',
